@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Habits</string>
+    <string name="navigation_drawer_open">Open menu</string>
+    <string name="navigation_drawer_close">Close menu</string>
+    <string name="nav_header_title">Habits</string>
+    <string name="nav_header_subtitle">Your habit coach</string>
+    <string name="nav_header_desc">Menu</string>
+    <string name="action_settings">Settings</string>
+</resources>
