@@ -5,22 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-
+            android:id="@+id/nav_today"
+            android:icon="@drawable/ic_menu_tasks"
+            android:title="@string/menu_today" />
+        <item
+            android:id="@+id/nav_tasks"
+            android:icon="@drawable/ic_menu_tasks"
+            android:title="@string/menu_tasks" />
+        <item
+            android:id="@+id/nav_stats"
+            android:icon="@drawable/ic_menu_tasks"
+            android:title="@string/menu_stats" />
     </group>
 
-    <item android:title="Options">
+    <item android:title="@string/menu_options">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/menu_share" />
             <item
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Tools" />
+                android:title="@string/menu_manage" />
         </menu>
     </item>
 
