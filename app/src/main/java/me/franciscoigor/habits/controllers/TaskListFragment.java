@@ -110,9 +110,9 @@ public class TaskListFragment extends ListFragment {
                 mTextCategory.setText(category + " on " + model.getStringValue(TaskModel.FIELD_SUBCATEGORY) + " at " + model.getStringValue(TaskModel.FIELD_TIME));
             }
             if (model.getBooleanValue(TaskModel.FIELD_ENABLED)){
-                mIcon.setImageResource(android.R.drawable.checkbox_on_background);
+                mIcon.setImageResource(android.R.drawable.radiobutton_on_background);
             }else{
-                mIcon.setImageResource(android.R.drawable.checkbox_off_background);
+                mIcon.setImageResource(android.R.drawable.radiobutton_off_background);
             }
 
         }

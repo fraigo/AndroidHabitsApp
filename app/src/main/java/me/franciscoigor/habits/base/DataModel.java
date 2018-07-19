@@ -90,13 +90,12 @@ public class DataModel {
         if (o == null || getClass() != o.getClass()) return false;
         DataModel dataModel = (DataModel) o;
         return Objects.equals(name, dataModel.name) &&
-                Objects.equals(fieldNames, dataModel.fieldNames) &&
-                Objects.equals(values, dataModel.values);
+                Objects.equals(getUUID(), dataModel.getUUID());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, fieldNames, values);
+        return Objects.hash(name, getUUID());
     }
 
 

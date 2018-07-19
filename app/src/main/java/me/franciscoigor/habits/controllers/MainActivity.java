@@ -124,10 +124,10 @@ public class MainActivity extends SingleFragmentActivity
         System.out.println("Menu: "+item.getItemId());
         if (id == R.id.nav_today) {
             setTitle(R.string.menu_today);
-           loadFragment(ActionListFragment.newInstance(null),true);
+           loadFragment(fragment = ActionListFragment.newInstance(null),true);
         } else if (id == R.id.nav_tasks) {
             setTitle(R.string.menu_tasks);
-            loadFragment(TaskListFragment.newInstance(null), true);
+            loadFragment(fragment = TaskListFragment.newInstance(null), true);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

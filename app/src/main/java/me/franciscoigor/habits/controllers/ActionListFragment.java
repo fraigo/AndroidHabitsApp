@@ -47,7 +47,7 @@ public class ActionListFragment extends ListFragment {
         ArrayList<DataModel> filtered=adapter.findItems(
                 "tasks left join taskActions ON taskActions.task_id=tasks._id",
                 columns,
-                "taskActions.task_id is null",
+                "taskActions.task_id is null and tasks.enabled = '1'",
                 null);
         for (DataModel item: filtered
                 ) {
@@ -94,7 +94,7 @@ public class ActionListFragment extends ListFragment {
             mIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    model.setValue(TaskModel.FIELD_ENABLED, !model.getBooleanValue(TaskModel.FIELD_ENABLED));
+                    model.setValue(TaskActionModel.FIELD_FINISHED, !model.getBooleanValue(TaskActionModel.FIELD_FINISHED));
                     getAdapter().updateItem(model);
                 }
             });
@@ -106,8 +106,8 @@ public class ActionListFragment extends ListFragment {
         public void bind(DataModel model) {
             this.model=model;
             System.out.println(model);
-            mTextName.setText(model.getStringValue(TaskModel.FIELD_TITLE));
-            mTextDescription.setText(model.getStringValue(TaskModel.FIELD_DESCRIPTION));
+            mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
+            mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " minutes");
 
             if (model.getBooleanValue(TaskActionModel.FIELD_FINISHED)){
                 mIcon.setImageResource(android.R.drawable.checkbox_on_background);
