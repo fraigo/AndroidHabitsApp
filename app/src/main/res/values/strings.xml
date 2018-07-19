@@ -12,7 +12,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_manage">Manage</string>
     <string name="menu_options">Options</string>
-    <string name="menu_today">Today tasks</string>
+    <string name="menu_today">Today</string>
     <string name="menu_stats">Stats</string>
 
 </resources>
