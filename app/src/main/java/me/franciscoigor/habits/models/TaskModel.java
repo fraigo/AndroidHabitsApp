@@ -1,7 +1,10 @@
 package me.franciscoigor.habits.models;
 
 
+import java.util.ArrayList;
+
 import me.franciscoigor.habits.base.DataModel;
+import me.franciscoigor.habits.base.DatabaseHelper;
 
 public class TaskModel extends DataModel {
 
@@ -51,10 +54,10 @@ public class TaskModel extends DataModel {
 
 
     public TaskModel(){
-        this(null, null, null, null, "08:00", false);
+        this(null, null, CATEGORY_DAILY, null, "08:00", true);
     }
 
-    public TaskModel(String title, String description, String category, String subcategory, String time, boolean finished){
+    public TaskModel(String title, String description, String category, String subcategory, String time, boolean enabled){
         super("tasks");
         addField(FIELD_TITLE);
         addField(FIELD_DESCRIPTION);
@@ -67,8 +70,12 @@ public class TaskModel extends DataModel {
         setValue(FIELD_DESCRIPTION, description);
         setValue(FIELD_CATEGORY, category);
         setValue(FIELD_SUBCATEGORY, subcategory);
-        setValue(FIELD_ENABLED, finished);
+        setValue(FIELD_ENABLED, enabled);
         setValue(FIELD_TIME, time);
 
+    }
+
+    public static ArrayList<DataModel> getItems(boolean onlyEnabled){
+        return DatabaseHelper.getAll("tasks");
     }
 }

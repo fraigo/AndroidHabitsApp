@@ -2,7 +2,10 @@ package me.franciscoigor.habits.base;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
@@ -12,6 +15,7 @@ public class DataModel {
     private ArrayList<String> fieldNames;
     private HashMap<String,String> values;
     public static final String FIELD_UUID = "uuid";
+    SimpleDateFormat dateFormat;
 
     public DataModel(String name){
         this.name =name;
@@ -19,6 +23,8 @@ public class DataModel {
         addField(FIELD_UUID);
         this.values = new HashMap<String,String>();
         setValue(FIELD_UUID, UUID.randomUUID().toString());
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     }
 
 
@@ -29,6 +35,13 @@ public class DataModel {
             sqlCreate += String.format(" , %s",field);
         }
         sqlCreate += " )";
+        System.out.println("SQL "+sqlCreate);
+        db.execSQL(sqlCreate);
+    }
+
+    public void createField(SQLiteDatabase db, String field) {
+        String sqlCreate=String.format("ALTER TABLE %s ADD FIELD ", name);
+        sqlCreate += field;
         System.out.println("SQL "+sqlCreate);
         db.execSQL(sqlCreate);
     }
@@ -54,6 +67,10 @@ public class DataModel {
         values.put(field,Integer.toString(value) );
     }
 
+    public void setValue(String field, Date value) {
+        values.put(field, dateFormat.format(value));
+    }
+
     public String getStringValue(String key){
         return values.get(key);
     }
@@ -65,6 +82,15 @@ public class DataModel {
     public int getIntValue(String key){
         if (values.get(key) == null ) return 0;
         return Integer.parseInt(values.get(key));
+    }
+
+    public Date getDateValue(String key){
+        if (values.get(key) == null ) return null;
+        try {
+            return dateFormat.parse(values.get(key));
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     public String getUUID() {
@@ -99,4 +125,7 @@ public class DataModel {
     }
 
 
+    public ArrayList<String> getFieldNames() {
+        return fieldNames;
+    }
 }

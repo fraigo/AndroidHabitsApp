@@ -19,13 +19,14 @@ import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.base.SingleFragmentActivity;
+import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
 public class MainActivity extends SingleFragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static ListFragment fragment;
+    static Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainActivity extends SingleFragmentActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                goToView(R.id.nav_tasks);
                 FragmentManager manager = getSupportFragmentManager();
                 TaskDialogFragment dialog = TaskDialogFragment.newInstance(new TaskModel());
                 dialog.show(manager,  TaskDialogFragment.DIALOG_ITEM);
@@ -54,7 +56,12 @@ public class MainActivity extends SingleFragmentActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        setTitle(R.string.menu_today);
+        if (TaskModel.getItems(false).size()==0){
+            goToView(R.id.nav_tasks);
+        }else{
+            goToView(R.id.nav_today);
+        }
+
 
     }
 
@@ -72,15 +79,17 @@ public class MainActivity extends SingleFragmentActivity
     protected void addSchemas() {
         DatabaseHelper.addSchema(new TaskModel());
         DatabaseHelper.addSchema(new TaskActionModel());
+        DatabaseHelper.addSchema(new OptionsModel());
+
     }
 
     @Override
     protected Fragment createFragment() {
-        fragment = ActionListFragment.newInstance(null);
+        fragment = TaskListFragment.newInstance(null);
         return fragment;
     }
 
-    public static ListFragment getFragment() {
+    public static Fragment getFragment() {
         return fragment;
     }
 
@@ -122,20 +131,29 @@ public class MainActivity extends SingleFragmentActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         System.out.println("Menu: "+item.getItemId());
-        if (id == R.id.nav_today) {
-            setTitle(R.string.menu_today);
-           loadFragment(fragment = ActionListFragment.newInstance(null),true);
-        } else if (id == R.id.nav_tasks) {
-            setTitle(R.string.menu_tasks);
-            loadFragment(fragment = TaskListFragment.newInstance(null), true);
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        }
+        goToView(id);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private boolean goToView(int viewId){
+        if (viewId == R.id.nav_today){
+            setTitle(R.string.menu_today);
+            loadFragment(fragment = ActionListFragment.newInstance(null),true);
+            return true;
+        }
+        if (viewId == R.id.nav_tasks) {
+            setTitle(R.string.menu_tasks);
+            loadFragment(fragment = TaskListFragment.newInstance(null), true);
+            return true;
+        }
+        if (viewId == R.id.nav_manage) {
+            setTitle(R.string.menu_manage);
+            loadFragment(fragment = OptionsFragment.newInstance(null), true);
+            return true;
+        }
+        return false;
     }
 }

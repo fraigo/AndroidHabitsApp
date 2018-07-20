@@ -1,17 +1,21 @@
 package me.franciscoigor.habits.controllers;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.ItemHolder;
 import me.franciscoigor.habits.base.ListFragment;
+import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
@@ -49,9 +53,14 @@ public class ActionListFragment extends ListFragment {
                 columns,
                 "taskActions.task_id is null and tasks.enabled = '1'",
                 null);
-        for (DataModel item: filtered
-                ) {
-            adapter.addItem(new TaskActionModel(item.getIntValue("_id"),  item.getStringValue(TaskActionModel.FIELD_TITLE),0,false));
+        for (DataModel item: filtered) {
+            adapter.addItem(new TaskActionModel(item.getIntValue("_id"),
+                    item.getStringValue(TaskActionModel.FIELD_TITLE),
+                    Calendar.getInstance().getTime(),
+                    0,
+                    false,
+                    false)
+            );
         }
     }
 
@@ -65,6 +74,7 @@ public class ActionListFragment extends ListFragment {
         TextView mTextName, mTextDescription, mTextCategory;
         ImageView mDelete, mIcon;
         DataModel model;
+        LinearLayout container;
         private static final int REQUEST_DATE = 0;
 
         public TaskItemHolder(View view){
@@ -72,12 +82,7 @@ public class ActionListFragment extends ListFragment {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FragmentManager manager = getFragmentManager();
-                    System.out.println("DIALOG "+model);
-                    TaskDialogFragment dialog = TaskDialogFragment.newInstance(model);
-                    dialog.setTargetFragment(ActionListFragment.this, REQUEST_DATE);
-
-                    dialog.show(manager, TaskDialogFragment.DIALOG_ITEM);
+                    // Nothing to do for now
                 }
             });
             mTextName = view.findViewById(R.id.task_list_item_title);
@@ -87,7 +92,9 @@ public class ActionListFragment extends ListFragment {
             mDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getAdapter().deleteItem(model);
+                    model.setValue(TaskActionModel.FIELD_DELETED, !model.getBooleanValue(TaskActionModel.FIELD_DELETED));
+                    getAdapter().updateItem(model);
+                    //getAdapter().deleteItem(model);
                 }
             });
             mIcon = view.findViewById(R.id.task_list_item_status);
@@ -99,6 +106,8 @@ public class ActionListFragment extends ListFragment {
                 }
             });
 
+            container = view.findViewById(R.id.task_list_item_container);
+
 
         }
 
@@ -108,13 +117,25 @@ public class ActionListFragment extends ListFragment {
             System.out.println(model);
             mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " minutes");
+            mTextCategory.setText("");
 
             if (model.getBooleanValue(TaskActionModel.FIELD_FINISHED)){
                 mIcon.setImageResource(android.R.drawable.checkbox_on_background);
             }else{
                 mIcon.setImageResource(android.R.drawable.checkbox_off_background);
             }
-
+            // set visibility
+            container.setBackgroundColor(Color.WHITE);
+            container.setVisibility(View.VISIBLE);
+            mIcon.setVisibility(View.VISIBLE);
+            if (model.getBooleanValue(TaskActionModel.FIELD_DELETED)){
+                mIcon.setVisibility(View.INVISIBLE);
+                if ("1".equals(OptionsModel.getOptionValue(OptionsModel.OPT_SHOW_DELETED))){
+                    container.setBackgroundColor(Color.LTGRAY);
+                }else{
+                    container.setVisibility(View.GONE);
+                }
+            }
         }
     }
 

@@ -185,14 +185,18 @@ public class TaskDialogFragment extends ItemDialogFragment {
     @Override
     public void onDialogResult(DialogInterface dialog, DataModel item) {
         super.onDialogResult(dialog, item);
-        ListFragment.ItemAdapter adapter= MainActivity.getFragment().getAdapter();
-        if (!adapter.findItem(item)){
-            adapter.addItem(item);
-            adapter.notifyItemInserted(adapter.getItemCount()-1);
-            NotifierActivity.notifyUser(this.getContext(), "Tasks", String.format("New task (%s) was created", item.getBooleanValue(TaskModel.FIELD_TITLE)));
-        }else{
-            adapter.updateItem(item);
+        if (MainActivity.getFragment() instanceof ListFragment){
+            ListFragment list= (ListFragment) MainActivity.getFragment();
+            ListFragment.ItemAdapter adapter= list.getAdapter();
+            if (!adapter.findItem(item)){
+                adapter.addItem(item);
+                adapter.notifyItemInserted(adapter.getItemCount()-1);
+                NotifierActivity.notifyUser(this.getContext(), "Tasks", String.format("New task (%s) was created", item.getBooleanValue(TaskModel.FIELD_TITLE)));
+            }else{
+                adapter.updateItem(item);
+            }
         }
+
 
     }
 }

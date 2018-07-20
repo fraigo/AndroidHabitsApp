@@ -46,14 +46,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        System.out.println("Upgrading to version "+VERSION);
         for (DataModel schema: schemas) {
             try {
-                System.out.println("Creating "+schema.getModelName());
+                System.out.println("Updating "+schema.getModelName());
                 schema.create(db);
-            }catch (Exception ex){
+            }catch (Exception ex) {
+                System.out.println("Error creating table: " + ex.getMessage());
+                ArrayList<String> fields = schema.getFieldNames();
+                for (String name : fields
+                        ) {
+                    try {
+                        schema.createField(db, name);
+                    }catch(Exception ex1){
+                        System.out.println("Error creating field: " + ex.getMessage());
+                    }
 
+                }
             }
-
         }
     }
 
