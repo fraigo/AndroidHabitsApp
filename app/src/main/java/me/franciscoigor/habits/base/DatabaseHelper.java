@@ -69,7 +69,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static ArrayList<DataModel> getItems(String tableName, String[] columnNames, String where, String[] whereArgs) {
-        Cursor cursor= queryItems(tableName, columnNames,  where, whereArgs);
+        return getItems(tableName, columnNames, where, whereArgs, null, null);
+    }
+
+    public static ArrayList<DataModel> getItems(String tableName, String[] columnNames, String where, String[] whereArgs, String groupBy, String orderBy) {
+        Cursor cursor= queryItems(tableName, columnNames,  where, whereArgs, groupBy, orderBy);
         int count = cursor.getCount();
         int columns = cursor.getColumnCount();
         ArrayList<DataModel> models=new ArrayList<DataModel>();
@@ -90,14 +94,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static Cursor queryItems(String tableName, String[] columnNames, String whereClause, String[] whereArgs) {
+        return queryItems(tableName, columnNames, whereClause, whereArgs, null,null);
+    }
+
+    private static Cursor queryItems(String tableName, String[] columnNames, String whereClause, String[] whereArgs, String groupBy, String orderBy) {
         Cursor cursor = database.query(
                 tableName,
                 columnNames, // Columns - null selects all columns
                 whereClause,
                 whereArgs,
-                null, // groupBy
+                groupBy, // groupBy
                 null, // having
-                null // orderBy
+                orderBy // orderBy
         );
         return cursor;
     }

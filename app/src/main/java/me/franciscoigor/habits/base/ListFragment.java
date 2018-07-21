@@ -27,6 +27,10 @@ public abstract class ListFragment extends Fragment {
 
     protected abstract void setupAdapter(ItemAdapter adapter);
 
+    public ArrayList<DataModel> getItems(String name){
+        return DatabaseHelper.getAll(name);
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,7 +127,7 @@ public abstract class ListFragment extends Fragment {
         }
 
         public ArrayList<DataModel> loadItems(String name) {
-            return DatabaseHelper.getAll(name);
+            return getItems(name);
         }
 
 

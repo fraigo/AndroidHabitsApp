@@ -17,7 +17,6 @@ import android.view.MenuItem;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DatabaseHelper;
-import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.base.SingleFragmentActivity;
 import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
@@ -56,7 +55,7 @@ public class MainActivity extends SingleFragmentActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        if (TaskModel.getItems(false).size()==0){
+        if (TaskModel.getItems(TaskModel.TABLE_NAME).size()==0){
             goToView(R.id.nav_tasks);
         }else{
             goToView(R.id.nav_today);
@@ -119,6 +118,7 @@ public class MainActivity extends SingleFragmentActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            goToView(R.id.nav_manage);
             return true;
         }
 
@@ -130,7 +130,6 @@ public class MainActivity extends SingleFragmentActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        System.out.println("Menu: "+item.getItemId());
         goToView(id);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -147,6 +146,11 @@ public class MainActivity extends SingleFragmentActivity
         if (viewId == R.id.nav_tasks) {
             setTitle(R.string.menu_tasks);
             loadFragment(fragment = TaskListFragment.newInstance(null), true);
+            return true;
+        }
+        if (viewId == R.id.nav_stats) {
+            setTitle(R.string.menu_stats);
+            loadFragment(fragment = StatsFragment.newInstance(null), true);
             return true;
         }
         if (viewId == R.id.nav_manage) {

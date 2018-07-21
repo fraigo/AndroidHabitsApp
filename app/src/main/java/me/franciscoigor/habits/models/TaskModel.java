@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
+import me.franciscoigor.habits.base.DateUtils;
 
 public class TaskModel extends DataModel {
+
+    public static final String TABLE_NAME = "tasks";
 
     public static final String FIELD_TITLE = "title";
     public static final String FIELD_DESCRIPTION = "description";
@@ -20,28 +23,11 @@ public class TaskModel extends DataModel {
     public static final String CATEGORY_MONTHLY = "Monthly";
     public static final String CATEGORY_ONETIME = "One time";
 
-    public static final String WEEKDAY_MONDAY = "Monday";
-    public static final String WEEKDAY_TUESDAY = "Tuesday";
-    public static final String WEEKDAY_WEDNESDAY = "Wednesday";
-    public static final String WEEKDAY_THURSDAY = "Thursday";
-    public static final String WEEKDAY_FRIDAY = "Friday";
-    public static final String WEEKDAY_SATURDAY = "Saturday";
-    public static final String WEEKDAY_SUNDAY = "Sunday";
 
-    public static String[] WEEKDAYS ;
     public static String[] CATEGORIES ;
 
     static {
-        String[] days = {
-                WEEKDAY_MONDAY ,
-                WEEKDAY_TUESDAY,
-                WEEKDAY_WEDNESDAY,
-                WEEKDAY_THURSDAY,
-                WEEKDAY_FRIDAY,
-                WEEKDAY_SATURDAY,
-                WEEKDAY_SUNDAY
-        };
-        WEEKDAYS = days;
+
 
         String[] categories = {
                 CATEGORY_DAILY,
@@ -58,7 +44,7 @@ public class TaskModel extends DataModel {
     }
 
     public TaskModel(String title, String description, String category, String subcategory, String time, boolean enabled){
-        super("tasks");
+        super(TABLE_NAME);
         addField(FIELD_TITLE);
         addField(FIELD_DESCRIPTION);
         addField(FIELD_CATEGORY);
@@ -75,7 +61,5 @@ public class TaskModel extends DataModel {
 
     }
 
-    public static ArrayList<DataModel> getItems(boolean onlyEnabled){
-        return DatabaseHelper.getAll("tasks");
-    }
+
 }

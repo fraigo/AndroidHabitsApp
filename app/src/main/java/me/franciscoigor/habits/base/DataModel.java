@@ -15,7 +15,6 @@ public class DataModel {
     private ArrayList<String> fieldNames;
     private HashMap<String,String> values;
     public static final String FIELD_UUID = "uuid";
-    SimpleDateFormat dateFormat;
 
     public DataModel(String name){
         this.name =name;
@@ -23,7 +22,7 @@ public class DataModel {
         addField(FIELD_UUID);
         this.values = new HashMap<String,String>();
         setValue(FIELD_UUID, UUID.randomUUID().toString());
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 
     }
 
@@ -68,7 +67,7 @@ public class DataModel {
     }
 
     public void setValue(String field, Date value) {
-        values.put(field, dateFormat.format(value));
+        values.put(field, DateUtils.format(value));
     }
 
     public String getStringValue(String key){
@@ -87,7 +86,7 @@ public class DataModel {
     public Date getDateValue(String key){
         if (values.get(key) == null ) return null;
         try {
-            return dateFormat.parse(values.get(key));
+            return DateUtils.parse(values.get(key));
         } catch (ParseException e) {
             return null;
         }
@@ -127,5 +126,9 @@ public class DataModel {
 
     public ArrayList<String> getFieldNames() {
         return fieldNames;
+    }
+
+    public static ArrayList<DataModel> getItems(String table){
+        return DatabaseHelper.getAll(table);
     }
 }

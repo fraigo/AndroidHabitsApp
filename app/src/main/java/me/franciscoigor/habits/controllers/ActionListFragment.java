@@ -13,6 +13,8 @@ import java.util.Calendar;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
+import me.franciscoigor.habits.base.DatabaseHelper;
+import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.ItemHolder;
 import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.models.OptionsModel;
@@ -47,19 +49,32 @@ public class ActionListFragment extends ListFragment {
 
     @Override
     protected void setupAdapter(ItemAdapter adapter) {
-        String[] columns = { "tasks._id", "tasks.title"};
+        String currentDate = DateUtils.format(DateUtils.today());
+        String currentWeekDay = DateUtils.weekDay(DateUtils.today());
+        String[] columns = { "tasks._id", "tasks.title", "tasks.time"};
         ArrayList<DataModel> filtered=adapter.findItems(
-                "tasks left join taskActions ON taskActions.task_id=tasks._id",
+                String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
                 columns,
-                "taskActions.task_id is null and tasks.enabled = '1'",
+                String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') )",
+                        TaskModel.FIELD_CATEGORY,
+                        TaskModel.CATEGORY_DAILY,
+                        TaskModel.FIELD_CATEGORY,
+                        TaskModel.CATEGORY_WEEKLY,
+                        TaskModel.FIELD_SUBCATEGORY,
+                        currentWeekDay
+                ),
                 null);
         for (DataModel item: filtered) {
-            adapter.addItem(new TaskActionModel(item.getIntValue("_id"),
-                    item.getStringValue(TaskActionModel.FIELD_TITLE),
-                    Calendar.getInstance().getTime(),
+            System.out.println("Cloning "+item);
+            adapter.addItem(new TaskActionModel(
+                    item.getIntValue("_id"),
+                    item.getStringValue(TaskModel.FIELD_TITLE),
+                    DateUtils.today(),
+                    item.getStringValue(TaskModel.FIELD_TIME),
                     0,
                     false,
-                    false)
+                    false
+                    )
             );
         }
     }
@@ -117,7 +132,7 @@ public class ActionListFragment extends ListFragment {
             System.out.println(model);
             mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " minutes");
-            mTextCategory.setText("");
+            mTextCategory.setText(model.getStringValue(TaskActionModel.FIELD_TIME) + " on " + model.getStringValue(TaskActionModel.FIELD_DATE));
 
             if (model.getBooleanValue(TaskActionModel.FIELD_FINISHED)){
                 mIcon.setImageResource(android.R.drawable.checkbox_on_background);
@@ -142,5 +157,12 @@ public class ActionListFragment extends ListFragment {
     @Override
     protected int getItemHolderLayout() {
         return R.layout.task_action_list_item;
+    }
+
+
+    @Override
+    public ArrayList<DataModel> getItems(String name) {
+        String currentDate = DateUtils.format(DateUtils.today());
+        return DatabaseHelper.getItems(name, null, String.format("task_date = '%s' ",currentDate), null, null, "task_time");
     }
 }

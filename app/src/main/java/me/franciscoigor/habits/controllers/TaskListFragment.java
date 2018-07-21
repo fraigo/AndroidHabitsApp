@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
+import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.ItemHolder;
 import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.models.TaskModel;
@@ -44,7 +45,36 @@ public class TaskListFragment extends ListFragment {
     protected void setupAdapter(ListFragment.ItemAdapter adapter) {
         ArrayList<DataModel> list=adapter.loadItems(viewModel);
         if (list.size()==0){
-            adapter.addItem(new TaskModel("Example task","Description of task",TaskModel.CATEGORY_WEEKLY, TaskModel.WEEKDAY_SUNDAY,"09:00", true));
+            adapter.addItem(new TaskModel("Read a book",
+                    "Keep my mind busy",
+                    TaskModel.CATEGORY_DAILY,
+                    null,
+                    "06:30",
+                    true));
+            adapter.addItem(new TaskModel("Go to work",
+                    "Office work",
+                    TaskModel.CATEGORY_DAILY,
+                    null,
+                    "08:30",
+                    true));
+            adapter.addItem(new TaskModel("Go to Gym",
+                    "Do some body work",
+                    TaskModel.CATEGORY_WEEKLY,
+                    DateUtils.WEEKDAY_SATURDAY,
+                    "09:00",
+                    true));
+            adapter.addItem(new TaskModel("Laundry",
+                    "Wash my clothes",
+                    TaskModel.CATEGORY_WEEKLY,
+                    DateUtils.WEEKDAY_SUNDAY,
+                    "09:00",
+                    true));
+            adapter.addItem(new TaskModel("Have some fun",
+                    "Watch a movie, Play with firends",
+                    TaskModel.CATEGORY_WEEKLY,
+                    DateUtils.WEEKDAY_FRIDAY,
+                    "21:00",
+                    true));
         }
         ArrayList<DataModel> filtered=adapter.findItems(viewModel, null, String.format("%s <> '%s'", TaskModel.FIELD_ENABLED,"1"),new String[0]);
     }
@@ -99,6 +129,7 @@ public class TaskListFragment extends ListFragment {
         @Override
         public void bind(DataModel model) {
             this.model=model;
+            System.out.println(model);
             mTextName.setText(model.getStringValue(TaskModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskModel.FIELD_DESCRIPTION));
             String category = model.getStringValue(TaskModel.FIELD_CATEGORY);

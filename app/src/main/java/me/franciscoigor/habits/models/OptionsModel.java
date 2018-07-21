@@ -8,6 +8,8 @@ import me.franciscoigor.habits.base.DatabaseHelper;
 
 public class OptionsModel extends DataModel {
 
+    public static final String TABLE_NAME = "options";
+
     public static final String FIELD_NAME = "name";
     public static final String FIELD_VALUE = "value";
 
@@ -18,7 +20,7 @@ public class OptionsModel extends DataModel {
     }
 
     public OptionsModel(String name, String value){
-        super("options");
+        super(TABLE_NAME);
         addField(FIELD_NAME);
         addField(FIELD_VALUE);
 
@@ -34,7 +36,7 @@ public class OptionsModel extends DataModel {
     }
 
     public static DataModel getOption(String name){
-        ArrayList<DataModel> items = DatabaseHelper.getItems("options",
+        ArrayList<DataModel> items = DatabaseHelper.getItems(TABLE_NAME,
                 null,
                 String.format(" %s = '%s' ",FIELD_NAME, name),
                 null);

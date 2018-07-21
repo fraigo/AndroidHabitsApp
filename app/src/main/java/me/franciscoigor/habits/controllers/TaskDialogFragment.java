@@ -20,6 +20,7 @@ import java.util.Arrays;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
+import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.ItemDialogFragment;
 import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.base.TimeDataPicker;
@@ -83,7 +84,7 @@ public class TaskDialogFragment extends ItemDialogFragment {
 
 
 
-        final String[] days= TaskModel.WEEKDAYS;
+        final String[] days= DateUtils.WEEKDAYS;
         final String[] items= TaskModel.CATEGORIES;
         final String[] empty = { "" };
 
@@ -179,7 +180,7 @@ public class TaskDialogFragment extends ItemDialogFragment {
 
     @Override
     protected String getDialogTitle(DataModel item) {
-        return "Task ";
+        return getString(R.string.task);
     }
 
     @Override
