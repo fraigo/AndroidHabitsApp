@@ -6,13 +6,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.Locale;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.models.OptionsModel;
+import me.franciscoigor.habits.models.TaskModel;
 
 
 public class OptionsFragment extends Fragment {
@@ -53,19 +61,55 @@ public class OptionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        DataModel tmp=OptionsModel.getOption(OptionsModel.OPT_SHOW_DELETED);
-        if (tmp == null){
-            tmp = OptionsModel.setOption(OptionsModel.OPT_SHOW_DELETED, "0");
+        DataModel optTmp;
+        optTmp=OptionsModel.getOption(OptionsModel.OPT_SHOW_DELETED);
+        if (optTmp == null){
+            optTmp = OptionsModel.setOption(OptionsModel.OPT_SHOW_DELETED, "0");
         }
-        final DataModel opt = tmp;
+        final DataModel optDeleted = optTmp;
         View view =  inflater.inflate(R.layout.fragment_options, container, false);
         Switch switch1 = view.findViewById(R.id.option_view_deleted);
-        switch1.setChecked(opt.getBooleanValue(OptionsModel.FIELD_VALUE));
+        switch1.setChecked(optDeleted.getBooleanValue(OptionsModel.FIELD_VALUE));
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                opt.setValue(OptionsModel.FIELD_VALUE,isChecked);
-                DatabaseHelper.update(opt);
+                optDeleted.setValue(OptionsModel.FIELD_VALUE,isChecked);
+                DatabaseHelper.update(optDeleted);
+            }
+        });
+
+        final String[] languages = {
+                "en",
+                "es",
+                "tr"
+        };
+        final String[] languageNames = {
+                "English",
+                "Spanish (Español)",
+                "Turkish (Türkçe)"
+        };
+
+        optTmp =OptionsModel.getOption(OptionsModel.OPT_LOCALE);
+        if (optTmp == null){
+            optTmp = OptionsModel.setOption(OptionsModel.OPT_LOCALE, "en");
+        }
+
+        final DataModel optLocale = optTmp;
+        final Spinner localeSelection = view.findViewById(R.id.option_locale);
+        localeSelection.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, languageNames ));
+        localeSelection.setSelection(Arrays.asList(languages).indexOf(optLocale.getStringValue(OptionsModel.FIELD_VALUE)));
+        localeSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                optLocale.setValue(OptionsModel.FIELD_VALUE, languages[position]);
+                DatabaseHelper.update(optLocale);
+                MainActivity.setLocale(getActivity(), languages[position]);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         return view;

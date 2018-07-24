@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Günlük Rutinim</string>
+    <string name="navigation_drawer_open">Menü aç</string>
+    <string name="navigation_drawer_close">Menü kapat</string>
+    <string name="nav_header_title">Günlük Rutinim</string>
+    <string name="nav_header_subtitle">Alışkanlık Koçu</string>
+    <string name="nav_header_desc">Menü</string>
+
+    <string name="menu_tasks">Tüm Görevler</string>
+    <string name="menu_manage">Değiştir</string>
+    <string name="menu_options">Ayarlar</string>
+    <string name="menu_today">Bugünkü görevler</string>
+    <string name="menu_stats">İstatistik</string>
+    <string name="menu_yesterday">Dün</string>
+
+    <string name="option_view_deleted">View deleted tasks</string>
+    <string name="stats_total">Total Tasks</string>
+    <string name="stats_completed">Completed tasks</string>
+    <string name="stats_incompleted">Incompleted tasks</string>
+    <string name="stats_overall">Overall Stats</string>
+    <string name="stats_today">Today Stats</string>
+
+    <string name="enabled">Aktif</string>
+    <string name="language">Dil</string>
+    <string name="minutes">Dakika</string>
+
+    <string name="task">Görev</string>
+    <string name="task_title">Görev Başlığı</string>
+    <string name="task_category">Görev Kategori</string>
+    <string name="task_status">Durum</string>
+    <string name="task_description">Tanım</string>
+    <string name="task_time">Zaman</string>
+
+    <string name="daily">Günlük</string>
+    <string name="weekly">Haftalık</string>
+    <string name="monthly">Aylık</string>
+    <string name="one_time">Bir kere</string>
+
+    <string name="monday">Pazartesi</string>
+    <string name="tuesday">Salı</string>
+    <string name="wednesday">Çarşamba</string>
+    <string name="thursday">Perşembe</string>
+    <string name="friday">Cuma</string>
+    <string name="saturday">Cumartesi</string>
+    <string name="sunday">Pazar</string>
+
+
+
+</resources>

@@ -11,6 +11,7 @@
     <string name="menu_options">Opciones</string>
     <string name="menu_today">Para Hoy</string>
     <string name="menu_stats">Estadísticas</string>
+    <string name="menu_yesterday">Ayer</string>
 
     <string name="option_view_deleted">Ver tareas eliminadas</string>
     <string name="stats_total">Total de tareas</string>
@@ -20,6 +21,28 @@
     <string name="stats_today">Estadísticas de hoy</string>
 
     <string name="enabled">Activo</string>
+    <string name="language">Idioma</string>
+    <string name="minutes">Minutos</string>
+
     <string name="task_title">Titulo</string>
+    <string name="task_category">Categoría</string>
+    <string name="task_status">Estado</string>
+    <string name="task_description">Descripcion</string>
+    <string name="task_time">Hora</string>
+
+    <string name="daily">Diario</string>
+    <string name="weekly">Semanal</string>
+    <string name="monthly">Mensual</string>
+    <string name="one_time">Una vez</string>
+
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
+    <string name="saturday">Sábado</string>
+    <string name="sunday">Domingo</string>
+
+
 
 </resources>

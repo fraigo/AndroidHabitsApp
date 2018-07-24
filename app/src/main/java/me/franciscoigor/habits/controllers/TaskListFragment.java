@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -75,6 +76,12 @@ public class TaskListFragment extends ListFragment {
                     DateUtils.WEEKDAY_FRIDAY,
                     "21:00",
                     true));
+            adapter.addItem(new TaskModel("Pay bills",
+                    "No debt",
+                    TaskModel.CATEGORY_MONTHLY,
+                    "1",
+                    "09:00",
+                    true));
         }
         ArrayList<DataModel> filtered=adapter.findItems(viewModel, null, String.format("%s <> '%s'", TaskModel.FIELD_ENABLED,"1"),new String[0]);
     }
@@ -87,7 +94,8 @@ public class TaskListFragment extends ListFragment {
     private class TaskItemHolder extends ItemHolder{
 
         TextView mTextName, mTextDescription, mTextCategory;
-        ImageView mDelete, mIcon;
+        ImageView mDelete;
+        Switch mSwitch;
         DataModel model;
         private static final int REQUEST_DATE = 0;
 
@@ -114,15 +122,14 @@ public class TaskListFragment extends ListFragment {
                     getAdapter().deleteItem(model);
                 }
             });
-            mIcon = view.findViewById(R.id.task_list_item_status);
-            mIcon.setOnClickListener(new View.OnClickListener() {
+            mSwitch = view.findViewById(R.id.task_list_item_enabled);
+            mSwitch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     model.setValue(TaskModel.FIELD_ENABLED, !model.getBooleanValue(TaskModel.FIELD_ENABLED));
                     getAdapter().updateItem(model);
                 }
             });
-
 
         }
 
@@ -133,18 +140,22 @@ public class TaskListFragment extends ListFragment {
             mTextName.setText(model.getStringValue(TaskModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskModel.FIELD_DESCRIPTION));
             String category = model.getStringValue(TaskModel.FIELD_CATEGORY);
-            mTextCategory.setText(category);
+            String categoryName = TaskModel.getCategory(getActivity(), category);
+            String subcategory = model.getStringValue(TaskModel.FIELD_SUBCATEGORY);
+
+            String time = model.getStringValue(TaskModel.FIELD_TIME);
+            mTextCategory.setText(categoryName);
             if (category.equals(TaskModel.CATEGORY_DAILY)){
-                mTextCategory.setText(category + " at " + model.getStringValue(TaskModel.FIELD_TIME));
+                mTextCategory.setText(categoryName + " @ " + time);
             }
             if (category.equals(TaskModel.CATEGORY_WEEKLY)){
-                mTextCategory.setText(category + " on " + model.getStringValue(TaskModel.FIELD_SUBCATEGORY) + " at " + model.getStringValue(TaskModel.FIELD_TIME));
+                String dayName = DateUtils.getWeekDayName(getActivity(), subcategory);
+                mTextCategory.setText(categoryName + " : " + dayName + " @ " + time);
             }
-            if (model.getBooleanValue(TaskModel.FIELD_ENABLED)){
-                mIcon.setImageResource(android.R.drawable.radiobutton_on_background);
-            }else{
-                mIcon.setImageResource(android.R.drawable.radiobutton_off_background);
+            if (category.equals(TaskModel.CATEGORY_MONTHLY)){
+                mTextCategory.setText(categoryName + " / " + subcategory + " @ " + time);
             }
+            mSwitch.setChecked(model.getBooleanValue(TaskModel.FIELD_ENABLED));
 
         }
     }

@@ -10,11 +10,25 @@
         android:padding="8dp"
         android:text="@string/option_view_deleted" />
 
+
+
     <Switch
         android:id="@+id/option_view_deleted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Enabled" />
+        android:text="@string/enabled" />
+
+    <TextView
+        android:id="@+id/option_locale_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/option_view_deleted" />
+
+    <Spinner
+        android:id="@+id/option_locale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

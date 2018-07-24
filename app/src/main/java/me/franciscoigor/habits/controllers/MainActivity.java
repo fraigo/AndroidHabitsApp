@@ -1,11 +1,15 @@
 package me.franciscoigor.habits.controllers;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +19,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Locale;
+
 import me.franciscoigor.habits.R;
+import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
+import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.SingleFragmentActivity;
 import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
@@ -54,12 +62,6 @@ public class MainActivity extends SingleFragmentActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        if (TaskModel.getItems(TaskModel.TABLE_NAME).size()==0){
-            goToView(R.id.nav_tasks);
-        }else{
-            goToView(R.id.nav_today);
-        }
 
 
     }
@@ -140,7 +142,12 @@ public class MainActivity extends SingleFragmentActivity
     private boolean goToView(int viewId){
         if (viewId == R.id.nav_today){
             setTitle(R.string.menu_today);
-            loadFragment(fragment = ActionListFragment.newInstance(null),true);
+            loadFragment(fragment = ActionListFragment.newInstance(DateUtils.today().getTime()),true);
+            return true;
+        }
+        if (viewId == R.id.nav_yesterday){
+            setTitle(R.string.menu_today);
+            loadFragment(fragment = ActionListFragment.newInstance(DateUtils.yesterday().getTime()),true);
             return true;
         }
         if (viewId == R.id.nav_tasks) {
@@ -159,5 +166,42 @@ public class MainActivity extends SingleFragmentActivity
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        DataModel optTmp =OptionsModel.getOption(OptionsModel.OPT_LOCALE);
+        if (optTmp != null){
+            MainActivity.setLocale(this, optTmp.getStringValue(OptionsModel.FIELD_VALUE));
+        }
+
+        if (TaskModel.getItems(TaskModel.TABLE_NAME).size()==0){
+            goToView(R.id.nav_tasks);
+        }else{
+            goToView(R.id.nav_today);
+        }
+
+
+    }
+
+
+
+    public static void setLocale(Activity activity, String lang) {
+        String current = activity.getResources().getConfiguration().locale.getLanguage();
+
+        Locale myLocale = new Locale(lang);
+        Resources res = activity.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        if (!current.equals(lang)){
+            Intent refresh = new Intent(activity, activity.getClass());
+            activity.startActivity(refresh);
+            activity.finish();
+        }
+
     }
 }

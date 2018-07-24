@@ -2,14 +2,13 @@ package me.franciscoigor.habits.controllers;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
@@ -25,20 +24,22 @@ import me.franciscoigor.habits.models.TaskModel;
 public class ActionListFragment extends ListFragment {
 
     private String viewModel = "taskActions";
-    private static final String ARG_PARAM1 = "param1";
-    private String mParam1;
+    private static final String ARG_DATE = "param1";
+    private long mDate;
 
-    public static ListFragment newInstance(String param1) {
+    public static ListFragment newInstance(Long datetime) {
         ActionListFragment fragment = new ActionListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putLong(ARG_DATE, datetime);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     public void createFragment(Bundle savedInstanceState) {
+        mDate = DateUtils.today().getTime();
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mDate = getArguments().getLong(ARG_DATE);
         }
     }
 
@@ -49,8 +50,10 @@ public class ActionListFragment extends ListFragment {
 
     @Override
     protected void setupAdapter(ItemAdapter adapter) {
-        String currentDate = DateUtils.format(DateUtils.today());
-        String currentWeekDay = DateUtils.weekDay(DateUtils.today());
+        Date today = new Date(mDate);
+        String currentDate = DateUtils.format(today);
+        String currentWeekDay = DateUtils.weekDay(today);
+        System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
         String[] columns = { "tasks._id", "tasks.title", "tasks.time"};
         ArrayList<DataModel> filtered=adapter.findItems(
                 String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
@@ -69,7 +72,7 @@ public class ActionListFragment extends ListFragment {
             adapter.addItem(new TaskActionModel(
                     item.getIntValue("_id"),
                     item.getStringValue(TaskModel.FIELD_TITLE),
-                    DateUtils.today(),
+                    today,
                     item.getStringValue(TaskModel.FIELD_TIME),
                     0,
                     false,
@@ -131,8 +134,9 @@ public class ActionListFragment extends ListFragment {
             this.model=model;
             System.out.println(model);
             mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
-            mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " minutes");
-            mTextCategory.setText(model.getStringValue(TaskActionModel.FIELD_TIME) + " on " + model.getStringValue(TaskActionModel.FIELD_DATE));
+            mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " " + getString(R.string.minutes));
+            mTextCategory.setText(model.getStringValue(TaskActionModel.FIELD_TIME) + " " +
+                    " @ " + model.getStringValue(TaskActionModel.FIELD_DATE));
 
             if (model.getBooleanValue(TaskActionModel.FIELD_FINISHED)){
                 mIcon.setImageResource(android.R.drawable.checkbox_on_background);
@@ -162,7 +166,7 @@ public class ActionListFragment extends ListFragment {
 
     @Override
     public ArrayList<DataModel> getItems(String name) {
-        String currentDate = DateUtils.format(DateUtils.today());
+        String currentDate = DateUtils.format(new Date(mDate));
         return DatabaseHelper.getItems(name, null, String.format("task_date = '%s' ",currentDate), null, null, "task_time");
     }
 }

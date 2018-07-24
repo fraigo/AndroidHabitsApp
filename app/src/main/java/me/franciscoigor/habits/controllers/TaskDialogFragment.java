@@ -82,19 +82,29 @@ public class TaskDialogFragment extends ItemDialogFragment {
             }
         });
 
-
+        final String[] monthDays = new String[31];
+        for (int i = 0; i < 31; i++) {
+            monthDays[i] = Integer.toString(i+1);
+        }
 
         final String[] days= DateUtils.WEEKDAYS;
-        final String[] items= TaskModel.CATEGORIES;
+        final String[] dayNames = DateUtils.getWeekDays(getActivity());
         final String[] empty = { "" };
 
         final Spinner taskSubcategory = v.findViewById(R.id.task_dialog_subcategory);
-        taskSubcategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, days ));
-        taskSubcategory.setSelection(Arrays.asList(days).indexOf(item.getStringValue(TaskModel.FIELD_SUBCATEGORY)));
+        final int currentDayOfWeek= Arrays.asList(days).indexOf(item.getStringValue(TaskModel.FIELD_SUBCATEGORY));
+        final int currentDayOfMonth= Arrays.asList(monthDays).indexOf(item.getStringValue(TaskModel.FIELD_SUBCATEGORY));
+        taskSubcategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, dayNames ));
+        taskSubcategory.setSelection(currentDayOfWeek);
         taskSubcategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                item.setValue(TaskModel.FIELD_SUBCATEGORY, days[position]);
+                if (TaskModel.CATEGORY_WEEKLY.equals(item.getStringValue(TaskModel.FIELD_CATEGORY))){
+                    item.setValue(TaskModel.FIELD_SUBCATEGORY, days[position]);
+                }
+                if (TaskModel.CATEGORY_MONTHLY.equals(item.getStringValue(TaskModel.FIELD_CATEGORY))){
+                    item.setValue(TaskModel.FIELD_SUBCATEGORY, monthDays[position]);
+                }
             }
 
             @Override
@@ -103,19 +113,26 @@ public class TaskDialogFragment extends ItemDialogFragment {
             }
         });
 
+        final String[] localeItems= TaskModel.getCateogries(getActivity());
+        final String[] items= TaskModel.CATEGORIES;
 
         final Spinner taskCategory = v.findViewById(R.id.task_dialog_category);
-        taskCategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, items ));
+        taskCategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, localeItems ));
         taskCategory.setSelection(Arrays.asList(items).indexOf(item.getStringValue(TaskModel.FIELD_CATEGORY)));
         taskCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 item.setValue(TaskModel.FIELD_CATEGORY, items[position]);
-                if (items[position].equals(TaskModel.CATEGORY_WEEKLY)){
-                    taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, days ));
-                    taskSubcategory.setSelection(0);
-                    item.setValue(TaskModel.FIELD_SUBCATEGORY, days[0]);
+                if (items[position].equals(TaskModel.CATEGORY_WEEKLY)) {
+                    taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, dayNames));
+                    taskSubcategory.setSelection(currentDayOfWeek);
+                    item.setValue(TaskModel.FIELD_SUBCATEGORY, currentDayOfWeek);
                     taskSubcategory.setEnabled(true);
+                } else if (items[position].equals(TaskModel.CATEGORY_MONTHLY)){
+                        taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, monthDays ));
+                        taskSubcategory.setSelection(currentDayOfMonth);
+                        item.setValue(TaskModel.FIELD_SUBCATEGORY, currentDayOfMonth);
+                        taskSubcategory.setEnabled(true);
                 }else{
                     taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, empty ));
                     item.setValue(TaskModel.FIELD_SUBCATEGORY, "");

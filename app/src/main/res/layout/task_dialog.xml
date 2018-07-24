@@ -27,13 +27,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="" />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Category" />
+        android:text="@string/task_category" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Time" />
+        android:text="@string/task_time" />
 
     <Button
         android:id="@+id/task_dialog_time"
@@ -68,18 +68,18 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Status" />
+        android:text="@string/task_status" />
 
     <CheckBox
         android:id="@+id/task_dialog_enabled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enabled" />
+        android:text="@string/enabled" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Task description" />
+        android:text="@string/task_description" />
 
     <EditText
         android:id="@+id/task_dialog_description"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Description" />
+        android:text="" />
 
 
 </LinearLayout>

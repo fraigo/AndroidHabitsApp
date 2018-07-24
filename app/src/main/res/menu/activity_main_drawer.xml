@@ -9,6 +9,10 @@
             android:icon="@android:drawable/ic_menu_day"
             android:title="@string/menu_today" />
         <item
+            android:id="@+id/nav_yesterday"
+            android:icon="@android:drawable/ic_menu_day"
+            android:title="@string/menu_yesterday" />
+        <item
             android:id="@+id/nav_tasks"
             android:icon="@android:drawable/ic_menu_agenda"
             android:title="@string/menu_tasks" />
