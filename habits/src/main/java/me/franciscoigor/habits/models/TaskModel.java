@@ -3,8 +3,10 @@ package me.franciscoigor.habits.models;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
@@ -25,10 +27,13 @@ public class TaskModel extends DataModel {
     public static final String CATEGORY_DAILY = "daily";
     public static final String CATEGORY_WEEKLY = "weekly";
     public static final String CATEGORY_MONTHLY = "monthly";
+    public static final String CATEGORY_WEEKDAYS = "weekdays";
+    public static final String CATEGORY_WEEKENDS = "weekends";
     public static final String CATEGORY_ONETIME = "one_time";
 
 
     public static String[] CATEGORIES ;
+    public static String[] COLORS ;
 
     static {
 
@@ -37,9 +42,20 @@ public class TaskModel extends DataModel {
                 CATEGORY_DAILY,
                 CATEGORY_WEEKLY,
                 CATEGORY_MONTHLY,
+                CATEGORY_WEEKDAYS,
+                CATEGORY_WEEKENDS,
                 CATEGORY_ONETIME
         };
+        String[] colors = {
+                "#000080",
+                "#008000",
+                "#008080",
+                "#FF5733",
+                "#800080",
+                "#808080"
+        };
         CATEGORIES = categories;
+        COLORS = colors;
     }
 
 
@@ -80,4 +96,9 @@ public class TaskModel extends DataModel {
     }
 
 
+    public static int getColor(DataModel model) {
+        String category = model.getStringValue(FIELD_CATEGORY);
+        int pos= Arrays.asList(CATEGORIES).indexOf(category);
+        return Color.parseColor(COLORS[pos]);
+    }
 }

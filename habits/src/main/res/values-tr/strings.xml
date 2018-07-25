@@ -8,17 +8,20 @@
 
     <string name="menu_tasks">Tüm Görevler</string>
     <string name="menu_manage">Değiştir</string>
-    <string name="menu_options">Ayarlar</string>
     <string name="menu_today">Bugünkü görevler</string>
     <string name="menu_stats">İstatistik</string>
     <string name="menu_yesterday">Dün</string>
 
-    <string name="option_view_deleted">View deleted tasks</string>
-    <string name="stats_total">Total Tasks</string>
-    <string name="stats_completed">Completed tasks</string>
-    <string name="stats_incompleted">Incompleted tasks</string>
-    <string name="stats_overall">Overall Stats</string>
-    <string name="stats_today">Today Stats</string>
+    <string name="section_review">Review</string>
+    <string name="section_general">General</string>
+    <string name="section_options">Ayarlar</string>
+
+    <string name="option_view_deleted">Silinen görevleri göster</string>
+    <string name="stats_total">Tüm görevler</string>
+    <string name="stats_completed">Tamamlanan görevler</string>
+    <string name="stats_incompleted">Tamamlanmamış görevler</string>
+    <string name="stats_overall">Tüm istatistikler</string>
+    <string name="stats_today">Bugünün istatistikleri</string>
 
     <string name="enabled">Aktif</string>
     <string name="language">Dil</string>
@@ -35,6 +38,8 @@
     <string name="weekly">Haftalık</string>
     <string name="monthly">Aylık</string>
     <string name="one_time">Bir kere</string>
+    <string name="weekdays">Hafta İçi</string>
+    <string name="weekends">Hafta Sonu</string>
 
     <string name="monday">Pazartesi</string>
     <string name="tuesday">Salı</string>

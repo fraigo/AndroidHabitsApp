@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/option_view_deleted" />
+        android:text="@string/language" />
 
     <Spinner
         android:id="@+id/option_locale"

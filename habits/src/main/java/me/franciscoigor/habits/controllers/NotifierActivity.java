@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
+import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.Storage;
+import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
 
@@ -26,14 +28,12 @@ public class NotifierActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ArrayList<DataModel> filtered= DatabaseHelper.getItems("tasks", null, String.format("%s <> '%s'", TaskModel.FIELD_ENABLED,"1"),new String[0]);
-        System.out.println(filtered);
-        NotifierActivity.notifyUser(this, "Pending tasks", String.format("%d pending tasks for today", filtered.size()));
-
-        System.out.println("Starting intent now !!");
-
-
+        String currentDate= DateUtils.weekDay(DateUtils.today());
+        System.out.println("START notifier");
+        ArrayList<DataModel> filtered= DatabaseHelper.getItems("tasksActions", null, String.format("%s <> '%s'", TaskActionModel.FIELD_DATE,currentDate),new String[0]);
+        if (filtered.size()>0) {
+            NotifierActivity.notifyUser(this, "Pending tasks", String.format("%d pending tasks for today", filtered.size()));
+        }
     }
 
     public static void startNotifier(Context context){
@@ -41,9 +41,9 @@ public class NotifierActivity extends AppCompatActivity {
         PendingIntent notifierActivity = PendingIntent.getActivity(context, 0, intent, 0);
         AlarmManager alarmMgr;
         alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+        alarmMgr.setRepeating(AlarmManager.ELAPSED_REALTIME,
                 SystemClock.elapsedRealtime() + 10000,
-                10000, notifierActivity);
+                60000, notifierActivity);
     }
 
     public static void notifyUser(Context context, String title, String message){

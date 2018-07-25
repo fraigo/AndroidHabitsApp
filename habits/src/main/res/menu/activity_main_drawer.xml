@@ -3,26 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_today"
-            android:icon="@android:drawable/ic_menu_day"
-            android:title="@string/menu_today" />
-        <item
-            android:id="@+id/nav_yesterday"
-            android:icon="@android:drawable/ic_menu_day"
-            android:title="@string/menu_yesterday" />
-        <item
-            android:id="@+id/nav_tasks"
-            android:icon="@android:drawable/ic_menu_agenda"
-            android:title="@string/menu_tasks" />
-        <item
-            android:id="@+id/nav_stats"
-            android:icon="@android:drawable/ic_menu_recent_history"
-            android:title="@string/menu_stats" />
-    </group>
+    <item android:title="@string/section_review">
+        <menu>
+            <item
+                android:id="@+id/nav_today"
+                android:icon="@android:drawable/ic_menu_day"
+                android:title="@string/menu_today" />
+            <item
+                android:id="@+id/nav_yesterday"
+                android:icon="@android:drawable/ic_menu_day"
+                android:title="@string/menu_yesterday" />
+        </menu>
+    </item>
 
-    <item android:title="@string/menu_options">
+    <item android:title="@string/section_general">
+        <menu>
+            <item
+                android:id="@+id/nav_tasks"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="@string/menu_tasks" />
+            <item
+                android:id="@+id/nav_stats"
+                android:icon="@android:drawable/ic_menu_recent_history"
+                android:title="@string/menu_stats" />
+        </menu>
+    </item>
+
+    <item android:title="@string/section_options">
         <menu>
             <item
                 android:id="@+id/nav_manage"

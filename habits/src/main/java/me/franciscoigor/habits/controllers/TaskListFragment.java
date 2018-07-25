@@ -1,5 +1,6 @@
 package me.franciscoigor.habits.controllers;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -119,7 +120,13 @@ public class TaskListFragment extends ListFragment {
             mDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getAdapter().deleteItem(model);
+                    MainActivity.confirmDialog(getActivity(), "Are you sure ?", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getAdapter().deleteItem(model);
+                        }
+                    });
+
                 }
             });
             mSwitch = view.findViewById(R.id.task_list_item_enabled);
@@ -145,16 +152,18 @@ public class TaskListFragment extends ListFragment {
 
             String time = model.getStringValue(TaskModel.FIELD_TIME);
             mTextCategory.setText(categoryName);
+            mTextCategory.setTextColor(TaskModel.getColor(model));
             if (category.equals(TaskModel.CATEGORY_DAILY)){
-                mTextCategory.setText(categoryName + " @ " + time);
+                mTextCategory.setText(categoryName);
             }
             if (category.equals(TaskModel.CATEGORY_WEEKLY)){
                 String dayName = DateUtils.getWeekDayName(getActivity(), subcategory);
-                mTextCategory.setText(categoryName + " : " + dayName + " @ " + time);
+                mTextCategory.setText(categoryName + " : " + dayName);
             }
             if (category.equals(TaskModel.CATEGORY_MONTHLY)){
-                mTextCategory.setText(categoryName + " / " + subcategory + " @ " + time);
+                mTextCategory.setText(categoryName + " / " + subcategory);
             }
+            mTextCategory.setText(mTextCategory.getText()+" @ " + time);
             mSwitch.setChecked(model.getBooleanValue(TaskModel.FIELD_ENABLED));
 
         }

@@ -8,9 +8,12 @@
 
     <string name="menu_tasks">All Tasks</string>
     <string name="menu_manage">Configure</string>
-    <string name="menu_options">Options</string>
     <string name="menu_today">Today's tasks</string>
     <string name="menu_stats">Stats</string>
+
+    <string name="section_review">Review</string>
+    <string name="section_general">General</string>
+    <string name="section_options">Options</string>
 
     <string name="option_view_deleted">View deleted tasks</string>
     <string name="stats_total">Total Tasks</string>
@@ -34,6 +37,8 @@
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
     <string name="one_time">One time</string>
+    <string name="weekdays">Weekdays</string>
+    <string name="weekends">Weekend</string>
 
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>

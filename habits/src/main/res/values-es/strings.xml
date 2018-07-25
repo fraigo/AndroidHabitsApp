@@ -8,10 +8,13 @@
 
     <string name="menu_tasks">Todas las tareas</string>
     <string name="menu_manage">Configurar</string>
-    <string name="menu_options">Opciones</string>
     <string name="menu_today">Para Hoy</string>
     <string name="menu_stats">Estadísticas</string>
     <string name="menu_yesterday">Ayer</string>
+
+    <string name="section_review">Revisión</string>
+    <string name="section_general">General</string>
+    <string name="section_options">Opciones</string>
 
     <string name="option_view_deleted">Ver tareas eliminadas</string>
     <string name="stats_total">Total de tareas</string>
@@ -34,6 +37,8 @@
     <string name="weekly">Semanal</string>
     <string name="monthly">Mensual</string>
     <string name="one_time">Una vez</string>
+    <string name="weekdays">Días de semana</string>
+    <string name="weekends">Fines de semana</string>
 
     <string name="monday">Lunes</string>
     <string name="tuesday">Martes</string>

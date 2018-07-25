@@ -11,6 +11,7 @@
         android:padding="8dp"
         android:text="@string/stats_overall"
         android:textColor="@color/colorLow"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -86,12 +87,24 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/stats_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0%"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorHigh"
         android:padding="8dp"
         android:text="@string/stats_today"
         android:textColor="@color/colorLow"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -142,6 +155,8 @@
             android:textAlignment="textEnd" />
     </LinearLayout>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -166,6 +181,15 @@
             android:textAlignment="textEnd" />
     </LinearLayout>
 
-
+    <TextView
+        android:id="@+id/stats_progress_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0%"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

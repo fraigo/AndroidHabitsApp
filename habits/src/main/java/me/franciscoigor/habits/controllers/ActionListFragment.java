@@ -50,36 +50,47 @@ public class ActionListFragment extends ListFragment {
 
     @Override
     protected void setupAdapter(ItemAdapter adapter) {
-        Date today = new Date(mDate);
-        String currentDate = DateUtils.format(today);
-        String currentWeekDay = DateUtils.weekDay(today);
+        Date current = new Date(mDate);
+        String currentDate = DateUtils.format(current);
+        String currentWeekDay = DateUtils.weekDay(current);
+        String todayDate = DateUtils.format(DateUtils.today());
+
         System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
         String[] columns = { "tasks._id", "tasks.title", "tasks.time"};
+
         ArrayList<DataModel> filtered=adapter.findItems(
                 String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
                 columns,
-                String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') )",
+                String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') OR ( tasks.%s = '%s' and  '%s' not in ('saturday','sunday') ) OR ( tasks.%s = '%s' and  '%s' in ('saturday','sunday') ))",
                         TaskModel.FIELD_CATEGORY,
                         TaskModel.CATEGORY_DAILY,
                         TaskModel.FIELD_CATEGORY,
                         TaskModel.CATEGORY_WEEKLY,
                         TaskModel.FIELD_SUBCATEGORY,
+                        currentWeekDay,
+                        TaskModel.FIELD_CATEGORY,
+                        TaskModel.CATEGORY_WEEKDAYS,
+                        currentWeekDay,
+                        TaskModel.FIELD_CATEGORY,
+                        TaskModel.CATEGORY_WEEKENDS,
                         currentWeekDay
                 ),
                 null);
-        for (DataModel item: filtered) {
-            System.out.println("Cloning "+item);
-            adapter.addItem(new TaskActionModel(
-                    item.getIntValue("_id"),
-                    item.getStringValue(TaskModel.FIELD_TITLE),
-                    today,
-                    item.getStringValue(TaskModel.FIELD_TIME),
-                    0,
-                    false,
-                    false
-                    )
-            );
+        if (todayDate.equals(currentDate)){
+            for (DataModel item: filtered) {
+                adapter.addItem(new TaskActionModel(
+                                item.getIntValue("_id"),
+                                item.getStringValue(TaskModel.FIELD_TITLE),
+                                current,
+                                item.getStringValue(TaskModel.FIELD_TIME),
+                                0,
+                                false,
+                                false
+                        )
+                );
+            }
         }
+
     }
 
     @Override

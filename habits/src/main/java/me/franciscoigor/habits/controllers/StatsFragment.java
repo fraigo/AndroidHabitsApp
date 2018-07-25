@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import me.franciscoigor.habits.R;
@@ -44,41 +45,54 @@ public class StatsFragment extends Fragment {
         System.out.println("Gathering stats...");
 
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        String globalCondition = String.format(" AND %s = '0' ",TaskActionModel.FIELD_DELETED);
         String condition;
         int stat;
         TextView label;
 
-        condition =  null;
-        stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition, null).size();
+        condition =  "1";
+        int total = stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
         label = view.findViewById(R.id.stats_total);
         label.setText(Integer.toString(stat));
 
 
         condition =  String.format(" %s.%s = '%d'", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_FINISHED, 1);
-        stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition, null).size();
+        int completed = stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
         label = view.findViewById(R.id.stats_completed);
         label.setText(Integer.toString(stat));
 
         condition =  String.format(" %s.%s = '%d'", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_FINISHED, 0);
-        stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition, null).size();
+        int incompleted = stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
         label = view.findViewById(R.id.stats_incompleted);
         label.setText(Integer.toString(stat));
 
+        TextView bar1 = view.findViewById(R.id.stats_progress);
+        if (total == 0 ) {
+            total = 1;
+        }
+        bar1.setText((completed * 100 / total) + "%");
+
         condition =  String.format(" %s.%s = '%s'", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_DATE, DateUtils.format(DateUtils.today()));;
-        stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition, null).size();
+        int totalToday = stat =  DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
         label = view.findViewById(R.id.stats_total_today);
         label.setText(Integer.toString(stat));
 
-
         condition =  String.format(" %s.%s = '%s' and %s.%s = '%d' ", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_DATE, DateUtils.format(DateUtils.today()), TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_FINISHED, 1);
-        stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition, null).size();
+        int completedToday = stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
         label = view.findViewById(R.id.stats_completed_today);
         label.setText(Integer.toString(stat));
 
         condition =  String.format(" %s.%s = '%s' and %s.%s = '%d'", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_DATE, DateUtils.format(DateUtils.today()), TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_FINISHED, 0);
-        stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition, null).size();
+        int incompletedToday = stat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
         label = view.findViewById(R.id.stats_incompleted_today);
         label.setText(Integer.toString(stat));
+
+        TextView bar2 = view.findViewById(R.id.stats_progress_today);
+        if (totalToday == 0 ) {
+            totalToday = 1;
+        }
+        bar2.setText((completedToday * 100 / totalToday) + "%");
 
         return view;
     }

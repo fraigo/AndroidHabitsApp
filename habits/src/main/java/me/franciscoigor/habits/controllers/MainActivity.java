@@ -1,6 +1,8 @@
 package me.franciscoigor.habits.controllers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -18,6 +20,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -146,7 +150,7 @@ public class MainActivity extends SingleFragmentActivity
             return true;
         }
         if (viewId == R.id.nav_yesterday){
-            setTitle(R.string.menu_today);
+            setTitle(R.string.menu_yesterday);
             loadFragment(fragment = ActionListFragment.newInstance(DateUtils.yesterday().getTime()),true);
             return true;
         }
@@ -184,6 +188,7 @@ public class MainActivity extends SingleFragmentActivity
         }
 
 
+        //NotifierActivity.startNotifier(this);
     }
 
 
@@ -203,5 +208,14 @@ public class MainActivity extends SingleFragmentActivity
             activity.finish();
         }
 
+    }
+
+    public static void confirmDialog(Activity activity, String message, DialogInterface.OnClickListener listener){
+        new AlertDialog.Builder(activity)
+                .setTitle("Confirmation")
+                .setMessage(message)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, listener)
+                .setNegativeButton(android.R.string.no, null).show();
     }
 }

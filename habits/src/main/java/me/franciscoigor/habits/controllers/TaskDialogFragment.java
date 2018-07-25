@@ -209,7 +209,6 @@ public class TaskDialogFragment extends ItemDialogFragment {
             if (!adapter.findItem(item)){
                 adapter.addItem(item);
                 adapter.notifyItemInserted(adapter.getItemCount()-1);
-                NotifierActivity.notifyUser(this.getContext(), "Tasks", String.format("New task (%s) was created", item.getBooleanValue(TaskModel.FIELD_TITLE)));
             }else{
                 adapter.updateItem(item);
             }
