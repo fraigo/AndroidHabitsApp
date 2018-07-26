@@ -8,12 +8,13 @@
 
     <string name="menu_tasks">任務</string>
     <string name="menu_manage">設定</string>
-    <string name="menu_today">今日任務</string>
+    <string name="menu_today">今天</string>
+    <string name="menu_yesterday">昨天</string>
     <string name="menu_stats">狀態</string>
 
     <string name="section_review">檢視</string>
     <string name="section_general">一般</string>
-    <string name="section_options">選單</string>
+    <string name="section_options">選項</string>
 
     <string name="option_view_deleted">檢視已刪除任務</string>
     <string name="stats_total">全部任務</string>
@@ -25,32 +26,32 @@
     <string name="enabled">激活</string>
     <string name="language">語言</string>
     <string name="minutes">分鐘</string>
-    <string name="are_you_sure">Are you sure?</string>
+    <string name="are_you_sure">你確定嗎?</string>
 
 
     <string name="task">任務</string>
-    <string name="task_title">任務名稱</string>
+    <string name="task_title">標題</string>
     <string name="task_category">任務種類</string>
     <string name="task_status">任務狀態</string>
     <string name="task_description">敘述</string>
     <string name="task_time">時間</string>
 
-    <string name="daily">日報</string>
-    <string name="weekly">週報</string>
-    <string name="monthly">月報</string>
+    <string name="daily">每天</string>
+    <string name="weekly">每週</string>
+    <string name="monthly">每月</string>
     <string name="one_time">單次</string>
     <string name="weekdays">工作日</string>
     <string name="weekends">週末</string>
 
 
-    <string name="monday">週一</string>
-    <string name="tuesday">週二</string>
-    <string name="wednesday">週三</string>
-    <string name="thursday">週四</string>
-    <string name="friday">週五</string>
-    <string name="saturday">週六</string>
-    <string name="sunday">週日</string>
-    <string name="menu_yesterday">昨日</string>
+    <string name="monday">星期一</string>
+    <string name="tuesday">星期二</string>
+    <string name="wednesday">星期三</string>
+    <string name="thursday">星期四</string>
+    <string name="friday">星期五</string>
+    <string name="saturday">星期六</string>
+    <string name="sunday">星期日</string>
+    
 
 
 
