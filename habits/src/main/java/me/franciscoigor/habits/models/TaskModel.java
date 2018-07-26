@@ -15,9 +15,10 @@ public class TaskModel extends DataModel {
     public static final String FIELD_TITLE = "title";
     public static final String FIELD_DESCRIPTION = "description";
     public static final String FIELD_FREQUENCY = "frequency";
-    public static final String FIELD_SUBCATEGORY = "subcategory";
+    public static final String FIELD_FREQ_DETAIL = "freq_detail" ;
     public static final String FIELD_TIME = "time";
     public static final String FIELD_ENABLED = "enabled";
+    public static final String FIELD_CATEGORY = "category";
 
     public static final String FREQUENCY_DAILY = "daily";
     public static final String FREQUENCY_WEEKLY = "weekly";
@@ -26,14 +27,22 @@ public class TaskModel extends DataModel {
     public static final String FREQUENCY_WEEKENDS = "weekends";
     public static final String FREQUENCY_ONETIME = "one_time";
 
+    public static final String CATEGORY_HEALTH = "health";
+    public static final String CATEGORY_STUDY = "study";
+    public static final String CATEGORY_FINANCIAL = "financial";
+    public static final String CATEGORY_WORK = "work";
+    public static final String CATEGORY_OTHER = "other";
+    public static final String CATEGORY_HOME = "home";
+    public static final String CATEGORY_ENTERTAINMENT = "entertainment";
 
     public static String[] FREQUENCIES;
     public static String[] COLORS ;
+    public static String[] CATEGORIES ;
 
     static {
 
 
-        String[] categories = {
+        String[] frequencies = {
                 FREQUENCY_DAILY,
                 FREQUENCY_WEEKLY,
                 FREQUENCY_MONTHLY,
@@ -49,44 +58,65 @@ public class TaskModel extends DataModel {
                 "#800080",
                 "#808080"
         };
-        FREQUENCIES = categories;
+        String[] categories={
+                CATEGORY_HEALTH,
+                CATEGORY_WORK,
+                CATEGORY_STUDY,
+                CATEGORY_FINANCIAL,
+                CATEGORY_HOME,
+                CATEGORY_ENTERTAINMENT,
+                CATEGORY_OTHER
+        };
+        FREQUENCIES = frequencies;
         COLORS = colors;
+        CATEGORIES = categories;
     }
 
 
     public TaskModel(){
-        this(null, null, FREQUENCY_DAILY, null, "08:00", true);
+        this(null, null, FREQUENCY_DAILY, null, CATEGORY_OTHER, "08:00", true);
     }
 
-    public TaskModel(String title, String description, String category, String subcategory, String time, boolean enabled){
+    public TaskModel(String title, String description, String frequency, String frequencyDetail, String category, String time, boolean enabled){
         super(TABLE_NAME);
         addField(FIELD_TITLE);
         addField(FIELD_DESCRIPTION);
         addField(FIELD_FREQUENCY);
-        addField(FIELD_SUBCATEGORY);
+        addField(FIELD_FREQ_DETAIL);
         addField(FIELD_ENABLED);
         addField(FIELD_TIME);
+        addField(FIELD_CATEGORY);
+
 
         setValue(FIELD_TITLE, title);
         setValue(FIELD_DESCRIPTION, description);
-        setValue(FIELD_FREQUENCY, category);
-        setValue(FIELD_SUBCATEGORY, subcategory);
+        setValue(FIELD_FREQUENCY, frequency);
+        setValue(FIELD_FREQ_DETAIL, frequencyDetail);
         setValue(FIELD_ENABLED, enabled);
         setValue(FIELD_TIME, time);
+        setValue(FIELD_CATEGORY, category);
 
     }
 
     public static String[] getFrequencyList(Activity activity){
         String[] result=new String[FREQUENCIES.length];
         for (int i = 0; i < result.length; i++) {
-            result[i] = getFrequency(activity, FREQUENCIES[i]);
+            result[i] = getString(activity, FREQUENCIES[i]);
         }
         return result;
     }
 
-    public static String getFrequency(Activity activity, String frequency){
-        if (frequency==null) return null;
-        int id = activity.getResources().getIdentifier(frequency, "string", activity.getPackageName());
+    public static String[] getCategoryNames(Activity activity){
+        String[] result=new String[CATEGORIES.length];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = getString(activity, CATEGORIES[i]);
+        }
+        return result;
+    }
+
+    public static String getString(Activity activity, String stringId){
+        if (stringId==null) return null;
+        int id = activity.getResources().getIdentifier(stringId, "string", activity.getPackageName());
         return activity.getString(id);
     }
 

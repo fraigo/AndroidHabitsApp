@@ -89,21 +89,40 @@ public class TaskDialogFragment extends ItemDialogFragment {
 
         final String[] days= DateUtils.WEEKDAYS;
         final String[] dayNames = DateUtils.getWeekDays(getActivity());
+        final String[] categories = TaskModel.CATEGORIES;
+        final String[] categoryNames = TaskModel.getCategoryNames(getActivity());
+
         final String[] empty = { "" };
 
-        final Spinner taskSubcategory = v.findViewById(R.id.task_dialog_subcategory);
-        final int currentDayOfWeek= Arrays.asList(days).indexOf(item.getStringValue(TaskModel.FIELD_SUBCATEGORY));
-        final int currentDayOfMonth= Arrays.asList(monthDays).indexOf(item.getStringValue(TaskModel.FIELD_SUBCATEGORY));
-        taskSubcategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, dayNames ));
-        taskSubcategory.setSelection(currentDayOfWeek);
-        taskSubcategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        final Spinner taskCategory = v.findViewById(R.id.task_dialog_category);
+        String category = item.getStringValue(TaskModel.FIELD_CATEGORY);
+        taskCategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, categoryNames ));
+        taskCategory.setSelection(Arrays.asList(categories).indexOf(category));
+        taskCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                item.setValue(TaskModel.FIELD_CATEGORY, categories[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final Spinner taskFreqDetail = v.findViewById(R.id.task_dialog_freqdetail);
+        final int currentDayOfWeek= Arrays.asList(days).indexOf(item.getStringValue(TaskModel.FIELD_FREQ_DETAIL));
+        final int currentDayOfMonth= Arrays.asList(monthDays).indexOf(item.getStringValue(TaskModel.FIELD_FREQ_DETAIL));
+        taskFreqDetail.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, dayNames ));
+        taskFreqDetail.setSelection(currentDayOfWeek);
+        taskFreqDetail.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (TaskModel.FREQUENCY_WEEKLY.equals(item.getStringValue(TaskModel.FIELD_FREQUENCY))){
-                    item.setValue(TaskModel.FIELD_SUBCATEGORY, days[position]);
+                    item.setValue(TaskModel.FIELD_FREQ_DETAIL, days[position]);
                 }
                 if (TaskModel.FREQUENCY_MONTHLY.equals(item.getStringValue(TaskModel.FIELD_FREQUENCY))){
-                    item.setValue(TaskModel.FIELD_SUBCATEGORY, monthDays[position]);
+                    item.setValue(TaskModel.FIELD_FREQ_DETAIL, monthDays[position]);
                 }
             }
 
@@ -116,27 +135,27 @@ public class TaskDialogFragment extends ItemDialogFragment {
         final String[] localeItems= TaskModel.getFrequencyList(getActivity());
         final String[] items= TaskModel.FREQUENCIES;
 
-        final Spinner taskCategory = v.findViewById(R.id.task_dialog_category);
-        taskCategory.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, localeItems ));
-        taskCategory.setSelection(Arrays.asList(items).indexOf(item.getStringValue(TaskModel.FIELD_FREQUENCY)));
-        taskCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        final Spinner taskFrequency = v.findViewById(R.id.task_dialog_frequency);
+        taskFrequency.setAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.spinner_item, R.id.item_data, localeItems ));
+        taskFrequency.setSelection(Arrays.asList(items).indexOf(item.getStringValue(TaskModel.FIELD_FREQUENCY)));
+        taskFrequency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 item.setValue(TaskModel.FIELD_FREQUENCY, items[position]);
                 if (items[position].equals(TaskModel.FREQUENCY_WEEKLY)) {
-                    taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, dayNames));
-                    taskSubcategory.setSelection(currentDayOfWeek);
-                    item.setValue(TaskModel.FIELD_SUBCATEGORY, currentDayOfWeek);
-                    taskSubcategory.setEnabled(true);
+                    taskFreqDetail.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, dayNames));
+                    taskFreqDetail.setSelection(currentDayOfWeek);
+                    item.setValue(TaskModel.FIELD_FREQ_DETAIL, currentDayOfWeek);
+                    taskFreqDetail.setEnabled(true);
                 } else if (items[position].equals(TaskModel.FREQUENCY_MONTHLY)){
-                        taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, monthDays ));
-                        taskSubcategory.setSelection(currentDayOfMonth);
-                        item.setValue(TaskModel.FIELD_SUBCATEGORY, currentDayOfMonth);
-                        taskSubcategory.setEnabled(true);
+                        taskFreqDetail.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, monthDays ));
+                        taskFreqDetail.setSelection(currentDayOfMonth);
+                        item.setValue(TaskModel.FIELD_FREQ_DETAIL, currentDayOfMonth);
+                        taskFreqDetail.setEnabled(true);
                 }else{
-                    taskSubcategory.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, empty ));
-                    item.setValue(TaskModel.FIELD_SUBCATEGORY, "");
-                    taskSubcategory.setEnabled(false);
+                    taskFreqDetail.setAdapter(new ArrayAdapter<String>(TaskDialogFragment.this.getContext(), R.layout.spinner_item, R.id.item_data, empty ));
+                    item.setValue(TaskModel.FIELD_FREQ_DETAIL, "");
+                    taskFreqDetail.setEnabled(false);
                 }
 
             }

@@ -82,13 +82,15 @@ public class OptionsFragment extends Fragment {
                 "en",
                 "es",
                 "tr",
-                "ch"
+                "ch",
+                "pt"
         };
         final String[] languageNames = {
                 "English",
                 "Spanish (Español)",
                 "Turkish (Türkçe)",
-                "Chinese (中文)"
+                "Chinese (中文)",
+                "Portuguese (Português)"
         };
 
         optTmp =OptionsModel.getOption(OptionsModel.OPT_LOCALE);

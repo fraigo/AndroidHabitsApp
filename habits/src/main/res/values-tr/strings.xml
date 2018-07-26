@@ -27,7 +27,7 @@
     <string name="language">Dil</string>
     <string name="minutes">Dakika</string>
     <string name="are_you_sure">Emin misin?</string>
-    <string name="frequency">Frequency</string>
+    <string name="frequency">Yapılan Aralık</string>
 
     <string name="task">Görev</string>
     <string name="task_title">Görev Başlığı</string>
@@ -51,6 +51,12 @@
     <string name="saturday">Cumartesi</string>
     <string name="sunday">Pazar</string>
 
-
+    <string name="health">Health</string>
+    <string name="study">Study</string>
+    <string name="work">Work</string>
+    <string name="financial">Financial</string>
+    <string name="home">Home</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="other">Other</string>
 
 </resources>

@@ -66,7 +66,7 @@ public class ActionListFragment extends ListFragment {
                         TaskModel.FREQUENCY_DAILY,
                         TaskModel.FIELD_FREQUENCY,
                         TaskModel.FREQUENCY_WEEKLY,
-                        TaskModel.FIELD_SUBCATEGORY,
+                        TaskModel.FIELD_FREQ_DETAIL,
                         currentWeekDay,
                         TaskModel.FIELD_FREQUENCY,
                         TaskModel.FREQUENCY_WEEKDAYS,
@@ -144,7 +144,7 @@ public class ActionListFragment extends ListFragment {
         @Override
         public void bind(DataModel model) {
             this.model=model;
-            String categoryName = TaskModel.getFrequency(getActivity(), model.getStringValue(TaskActionModel.FIELD_FREQUENCY));
+            String categoryName = TaskModel.getString(getActivity(), model.getStringValue(TaskActionModel.FIELD_FREQUENCY));
             mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " " + getString(R.string.minutes));
             mTextCategory.setText(categoryName + " @ " +model.getStringValue(TaskActionModel.FIELD_TIME) + " " +

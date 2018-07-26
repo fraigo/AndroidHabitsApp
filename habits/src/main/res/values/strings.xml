@@ -9,7 +9,7 @@
     <string name="menu_tasks">All Tasks</string>
     <string name="menu_manage">Configure</string>
     <string name="menu_today">Today's tasks</string>
-    <string name="menu_stats">Stats</string>
+    <string name="menu_stats">Statistics</string>
 
     <string name="section_review">Review</string>
     <string name="section_general">General</string>
@@ -51,6 +51,15 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
     <string name="menu_yesterday">Yesterday</string>
+
+    <string name="health">Health</string>
+    <string name="study">Study</string>
+    <string name="work">Work</string>
+    <string name="financial">Financial</string>
+    <string name="home">Home</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="other">Other</string>
+
 
 
 

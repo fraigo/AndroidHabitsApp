@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/task_category" />
+        android:text="@string/frequency" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,17 +41,28 @@
         android:orientation="horizontal">
 
         <Spinner
-            android:id="@+id/task_dialog_category"
+            android:id="@+id/task_dialog_frequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <Spinner
-            android:id="@+id/task_dialog_subcategory"
+            android:id="@+id/task_dialog_freqdetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_category" />
+
+    <Spinner
+        android:id="@+id/task_dialog_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <TextView
         android:layout_width="match_parent"

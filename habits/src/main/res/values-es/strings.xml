@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Habitos</string>
+    <string name="app_name">Hábitos</string>
     <string name="navigation_drawer_open">Abrir menu</string>
     <string name="navigation_drawer_close">Cerrar menu</string>
-    <string name="nav_header_title">Habitos</string>
+    <string name="nav_header_title">Hábitos</string>
     <string name="nav_header_subtitle">Tu coach personal</string>
     <string name="nav_header_desc">Menu</string>
 
@@ -29,10 +29,10 @@
     <string name="are_you_sure">Está seguro?</string>
     <string name="frequency">Frequency</string>
 
-    <string name="task_title">Titulo</string>
+    <string name="task_title">Título</string>
     <string name="task_category">Categoría</string>
     <string name="task_status">Estado</string>
-    <string name="task_description">Descripcion</string>
+    <string name="task_description">Descripción</string>
     <string name="task_time">Hora</string>
 
     <string name="daily">Diario</string>
@@ -50,6 +50,12 @@
     <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
 
-
+    <string name="health">Health</string>
+    <string name="study">Study</string>
+    <string name="work">Work</string>
+    <string name="financial">Financial</string>
+    <string name="home">Home</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="other">Other</string>
 
 </resources>
