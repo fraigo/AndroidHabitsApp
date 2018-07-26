@@ -26,6 +26,8 @@
     <string name="enabled">Activo</string>
     <string name="language">Idioma</string>
     <string name="minutes">Minutos</string>
+    <string name="are_you_sure">Está seguro?</string>
+    <string name="frequency">Frequency</string>
 
     <string name="task_title">Titulo</string>
     <string name="task_category">Categoría</string>

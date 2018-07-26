@@ -49,37 +49,43 @@ public class TaskListFragment extends ListFragment {
         if (list.size()==0){
             adapter.addItem(new TaskModel("Read a book",
                     "Keep my mind busy",
-                    TaskModel.CATEGORY_DAILY,
+                    TaskModel.FREQUENCY_DAILY,
                     null,
                     "06:30",
                     true));
             adapter.addItem(new TaskModel("Go to work",
                     "Office work",
-                    TaskModel.CATEGORY_DAILY,
+                    TaskModel.FREQUENCY_WEEKDAYS,
                     null,
-                    "08:30",
+                    "08:00",
                     true));
             adapter.addItem(new TaskModel("Go to Gym",
                     "Do some body work",
-                    TaskModel.CATEGORY_WEEKLY,
+                    TaskModel.FREQUENCY_WEEKLY,
                     DateUtils.WEEKDAY_SATURDAY,
                     "09:00",
                     true));
             adapter.addItem(new TaskModel("Laundry",
                     "Wash my clothes",
-                    TaskModel.CATEGORY_WEEKLY,
+                    TaskModel.FREQUENCY_WEEKLY,
                     DateUtils.WEEKDAY_SUNDAY,
                     "09:00",
                     true));
             adapter.addItem(new TaskModel("Have some fun",
-                    "Watch a movie, Play with firends",
-                    TaskModel.CATEGORY_WEEKLY,
+                    "Watch a movie, Play with friends",
+                    TaskModel.FREQUENCY_WEEKLY,
                     DateUtils.WEEKDAY_FRIDAY,
                     "21:00",
                     true));
+            adapter.addItem(new TaskModel("Family Activities",
+                    "Go camping, visit family",
+                    TaskModel.FREQUENCY_WEEKENDS,
+                    null,
+                    "16:00",
+                    true));
             adapter.addItem(new TaskModel("Pay bills",
                     "No debt",
-                    TaskModel.CATEGORY_MONTHLY,
+                    TaskModel.FREQUENCY_MONTHLY,
                     "1",
                     "09:00",
                     true));
@@ -146,21 +152,21 @@ public class TaskListFragment extends ListFragment {
             System.out.println(model);
             mTextName.setText(model.getStringValue(TaskModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskModel.FIELD_DESCRIPTION));
-            String category = model.getStringValue(TaskModel.FIELD_CATEGORY);
-            String categoryName = TaskModel.getCategory(getActivity(), category);
+            String category = model.getStringValue(TaskModel.FIELD_FREQUENCY);
+            String categoryName = TaskModel.getFrequency(getActivity(), category);
             String subcategory = model.getStringValue(TaskModel.FIELD_SUBCATEGORY);
 
             String time = model.getStringValue(TaskModel.FIELD_TIME);
             mTextCategory.setText(categoryName);
             mTextCategory.setTextColor(TaskModel.getColor(model));
-            if (category.equals(TaskModel.CATEGORY_DAILY)){
+            if (category.equals(TaskModel.FREQUENCY_DAILY)){
                 mTextCategory.setText(categoryName);
             }
-            if (category.equals(TaskModel.CATEGORY_WEEKLY)){
+            if (category.equals(TaskModel.FREQUENCY_WEEKLY)){
                 String dayName = DateUtils.getWeekDayName(getActivity(), subcategory);
                 mTextCategory.setText(categoryName + " : " + dayName);
             }
-            if (category.equals(TaskModel.CATEGORY_MONTHLY)){
+            if (category.equals(TaskModel.FREQUENCY_MONTHLY)){
                 mTextCategory.setText(categoryName + " / " + subcategory);
             }
             mTextCategory.setText(mTextCategory.getText()+" @ " + time);

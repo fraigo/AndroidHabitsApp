@@ -56,23 +56,23 @@ public class ActionListFragment extends ListFragment {
         String todayDate = DateUtils.format(DateUtils.today());
 
         System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
-        String[] columns = { "tasks._id", "tasks.title", "tasks.time"};
+        String[] columns = { "tasks.*"};
 
         ArrayList<DataModel> filtered=adapter.findItems(
                 String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
                 columns,
                 String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') OR ( tasks.%s = '%s' and  '%s' not in ('saturday','sunday') ) OR ( tasks.%s = '%s' and  '%s' in ('saturday','sunday') ))",
-                        TaskModel.FIELD_CATEGORY,
-                        TaskModel.CATEGORY_DAILY,
-                        TaskModel.FIELD_CATEGORY,
-                        TaskModel.CATEGORY_WEEKLY,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_DAILY,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_WEEKLY,
                         TaskModel.FIELD_SUBCATEGORY,
                         currentWeekDay,
-                        TaskModel.FIELD_CATEGORY,
-                        TaskModel.CATEGORY_WEEKDAYS,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_WEEKDAYS,
                         currentWeekDay,
-                        TaskModel.FIELD_CATEGORY,
-                        TaskModel.CATEGORY_WEEKENDS,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_WEEKENDS,
                         currentWeekDay
                 ),
                 null);
@@ -83,6 +83,7 @@ public class ActionListFragment extends ListFragment {
                                 item.getStringValue(TaskModel.FIELD_TITLE),
                                 current,
                                 item.getStringValue(TaskModel.FIELD_TIME),
+                                item.getStringValue(TaskModel.FIELD_FREQUENCY),
                                 0,
                                 false,
                                 false
@@ -143,11 +144,11 @@ public class ActionListFragment extends ListFragment {
         @Override
         public void bind(DataModel model) {
             this.model=model;
-            System.out.println(model);
+            String categoryName = TaskModel.getFrequency(getActivity(), model.getStringValue(TaskActionModel.FIELD_FREQUENCY));
             mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " " + getString(R.string.minutes));
-            mTextCategory.setText(model.getStringValue(TaskActionModel.FIELD_TIME) + " " +
-                    " @ " + model.getStringValue(TaskActionModel.FIELD_DATE));
+            mTextCategory.setText(categoryName + " @ " +model.getStringValue(TaskActionModel.FIELD_TIME) + " " +
+                    " " + model.getStringValue(TaskActionModel.FIELD_DATE));
 
             if (model.getBooleanValue(TaskActionModel.FIELD_FINISHED)){
                 mIcon.setImageResource(android.R.drawable.checkbox_on_background);
