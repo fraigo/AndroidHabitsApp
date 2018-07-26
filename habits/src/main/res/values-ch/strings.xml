@@ -1,54 +1,54 @@
 <resources>
-    <string name="app_name">Habits</string>
-    <string name="navigation_drawer_open">Open menu</string>
-    <string name="navigation_drawer_close">Close menu</string>
-    <string name="nav_header_title">Habits</string>
-    <string name="nav_header_subtitle">Your habit coach</string>
-    <string name="nav_header_desc">Menu</string>
+    <string name="app_name">例行活動</string>
+    <string name="navigation_drawer_open">開啟選單</string>
+    <string name="navigation_drawer_close">關閉選單</string>
+    <string name="nav_header_title">例行活動</string>
+    <string name="nav_header_subtitle">你的指導教練</string>
+    <string name="nav_header_desc">主選單</string>
 
-    <string name="menu_tasks">All Tasks</string>
-    <string name="menu_manage">Configure</string>
-    <string name="menu_today">Today's tasks</string>
-    <string name="menu_stats">Stats</string>
+    <string name="menu_tasks">任務</string>
+    <string name="menu_manage">設定</string>
+    <string name="menu_today">今日任務</string>
+    <string name="menu_stats">狀態</string>
 
-    <string name="section_review">Review</string>
-    <string name="section_general">General</string>
-    <string name="section_options">Options</string>
+    <string name="section_review">檢視</string>
+    <string name="section_general">一般</string>
+    <string name="section_options">選單</string>
 
-    <string name="option_view_deleted">View deleted tasks</string>
-    <string name="stats_total">Total Tasks</string>
-    <string name="stats_completed">Completed tasks</string>
-    <string name="stats_incompleted">Incompleted tasks</string>
-    <string name="stats_overall">Overall Stats</string>
-    <string name="stats_today">Today Stats</string>
+    <string name="option_view_deleted">檢視已刪除任務</string>
+    <string name="stats_total">全部任務</string>
+    <string name="stats_completed">已完成任務</string>
+    <string name="stats_incompleted">未完成任務</string>
+    <string name="stats_overall">狀態總覽</string>
+    <string name="stats_today">今日狀態</string>
 
-    <string name="enabled">Enabled</string>
-    <string name="language">Language</string>
-    <string name="minutes">Minutes</string>
+    <string name="enabled">激活</string>
+    <string name="language">語言</string>
+    <string name="minutes">分鐘</string>
 
-    <string name="task">Task</string>
-    <string name="task_title">Task Title</string>
-    <string name="task_category">Category</string>
-    <string name="task_status">Status</string>
-    <string name="task_description">Description</string>
-    <string name="task_time">Time</string>
+    <string name="task">任務</string>
+    <string name="task_title">任務名稱</string>
+    <string name="task_category">任務種類</string>
+    <string name="task_status">任務狀態</string>
+    <string name="task_description">敘述</string>
+    <string name="task_time">時間</string>
 
-    <string name="daily">Daily</string>
-    <string name="weekly">Weekly</string>
-    <string name="monthly">Monthly</string>
-    <string name="one_time">One time</string>
-    <string name="weekdays">Weekdays</string>
-    <string name="weekends">Weekend</string>
+    <string name="daily">日報</string>
+    <string name="weekly">週報</string>
+    <string name="monthly">月報</string>
+    <string name="one_time">單次</string>
+    <string name="weekdays">工作日</string>
+    <string name="weekends">週末</string>
 
 
-    <string name="monday">Monday</string>
-    <string name="tuesday">Tuesday</string>
-    <string name="wednesday">Wednesday</string>
-    <string name="thursday">Thursday</string>
-    <string name="friday">Friday</string>
-    <string name="saturday">Saturday</string>
-    <string name="sunday">Sunday</string>
-    <string name="menu_yesterday">Yesterday</string>
+    <string name="monday">週一</string>
+    <string name="tuesday">週二</string>
+    <string name="wednesday">週三</string>
+    <string name="thursday">週四</string>
+    <string name="friday">週五</string>
+    <string name="saturday">週六</string>
+    <string name="sunday">週日</string>
+    <string name="menu_yesterday">昨日</string>
 
 
 
