@@ -181,7 +181,7 @@ public class MainActivity extends SingleFragmentActivity
             MainActivity.setLocale(this, optTmp.getStringValue(OptionsModel.FIELD_VALUE));
         }
 
-        if (TaskModel.getItems(TaskModel.TABLE_NAME).size()==0){
+        if (TaskActionModel.getItems(TaskActionModel.TABLE_NAME).size()==0){
             goToView(R.id.nav_tasks);
         }else{
             goToView(R.id.nav_today);

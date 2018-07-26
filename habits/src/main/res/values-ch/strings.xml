@@ -25,6 +25,8 @@
     <string name="enabled">激活</string>
     <string name="language">語言</string>
     <string name="minutes">分鐘</string>
+    <string name="are_you_sure">Are you sure?</string>
+
 
     <string name="task">任務</string>
     <string name="task_title">任務名稱</string>
