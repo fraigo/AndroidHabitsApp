@@ -59,8 +59,7 @@
     <string name="home">Home</string>
     <string name="entertainment">Entertainment</string>
     <string name="other">Other</string>
-
-
+    <string name="option_notifications">Notifications</string>
 
 
 </resources>

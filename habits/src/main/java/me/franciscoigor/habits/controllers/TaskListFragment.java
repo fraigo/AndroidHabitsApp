@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DateUtils;
+import me.franciscoigor.habits.base.DialogHelper;
 import me.franciscoigor.habits.base.ItemHolder;
 import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.models.TaskModel;
@@ -107,7 +108,7 @@ public class TaskListFragment extends ListFragment {
 
     private class TaskItemHolder extends ItemHolder{
 
-        TextView mTextName, mTextDescription, mTextCategory;
+        TextView mTextName, mTextDescription, mTextFrequency, mTextCategory;
         ImageView mDelete;
         Switch mSwitch;
         DataModel model;
@@ -128,12 +129,13 @@ public class TaskListFragment extends ListFragment {
             });
             mTextName = view.findViewById(R.id.task_list_item_title);
             mTextDescription = view.findViewById(R.id.task_list_item_description);
+            mTextFrequency = view.findViewById(R.id.task_list_item_frequency);
             mTextCategory = view.findViewById(R.id.task_list_item_category);
             mDelete = view.findViewById(R.id.task_list_item_delete);
             mDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.confirmDialog(getActivity(), "Are you sure ?", new DialogInterface.OnClickListener() {
+                    DialogHelper.confirmDialog(getActivity(), "Are you sure ?", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             getAdapter().deleteItem(model);
@@ -160,23 +162,26 @@ public class TaskListFragment extends ListFragment {
             mTextName.setText(model.getStringValue(TaskModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskModel.FIELD_DESCRIPTION));
             String category = model.getStringValue(TaskModel.FIELD_FREQUENCY);
-            String categoryName = "[" +model.getStringValue(TaskModel.FIELD_CATEGORY) + "] " +TaskModel.getString(getActivity(), category);
+            String categoryName = TaskModel.getCategoryName(getActivity(),model.getStringValue(TaskModel.FIELD_CATEGORY));
+            mTextCategory.setText(categoryName);
+            mTextCategory.setBackgroundColor(TaskModel.getColor(model));
+            String frequencyText = TaskModel.getString(getActivity(), category);
             String subcategory = model.getStringValue(TaskModel.FIELD_FREQ_DETAIL);
 
             String time = model.getStringValue(TaskModel.FIELD_TIME);
-            mTextCategory.setText(categoryName);
-            mTextCategory.setTextColor(TaskModel.getColor(model));
+            mTextFrequency.setText(frequencyText);
+            mTextFrequency.setTextColor(TaskModel.getColor(model));
             if (category.equals(TaskModel.FREQUENCY_DAILY)){
-                mTextCategory.setText(categoryName);
+                mTextFrequency.setText(frequencyText);
             }
             if (category.equals(TaskModel.FREQUENCY_WEEKLY)){
                 String dayName = DateUtils.getWeekDayName(getActivity(), subcategory);
-                mTextCategory.setText(categoryName + " : " + dayName);
+                mTextFrequency.setText(frequencyText + " : " + dayName);
             }
             if (category.equals(TaskModel.FREQUENCY_MONTHLY)){
-                mTextCategory.setText(categoryName + " / " + subcategory);
+                mTextFrequency.setText(frequencyText + " / " + subcategory);
             }
-            mTextCategory.setText(mTextCategory.getText()+" @ " + time);
+            mTextFrequency.setText(mTextFrequency.getText()+" @ " + time);
             mSwitch.setChecked(model.getBooleanValue(TaskModel.FIELD_ENABLED));
 
         }

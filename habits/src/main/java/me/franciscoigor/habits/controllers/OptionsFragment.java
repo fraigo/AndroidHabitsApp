@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -19,6 +20,8 @@ import java.util.Locale;
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
+import me.franciscoigor.habits.base.LocaleHelper;
+import me.franciscoigor.habits.base.NotificationHelper;
 import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskModel;
 
@@ -107,13 +110,22 @@ public class OptionsFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 optLocale.setValue(OptionsModel.FIELD_VALUE, languages[position]);
                 DatabaseHelper.update(optLocale);
-                MainActivity.setLocale(getActivity(), languages[position]);
+                LocaleHelper.setLocale(getActivity(), languages[position]);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        Button optNotifications=view.findViewById(R.id.option_notifications);
+        optNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationHelper helper = new NotificationHelper(getContext(), MainActivity.class);
+                helper.showNotificationSettings(getActivity(), NotificationHelper.DEFAULT_CHANNEL);
             }
         });
         return view;

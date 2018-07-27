@@ -117,7 +117,7 @@ public class ActionListFragment extends ListFragment {
             });
             mTextName = view.findViewById(R.id.task_list_item_title);
             mTextDescription = view.findViewById(R.id.task_list_item_description);
-            mTextCategory = view.findViewById(R.id.task_list_item_category);
+            mTextCategory = view.findViewById(R.id.task_list_item_frequency);
             mDelete = view.findViewById(R.id.task_list_item_delete);
             mDelete.setOnClickListener(new View.OnClickListener() {
                 @Override

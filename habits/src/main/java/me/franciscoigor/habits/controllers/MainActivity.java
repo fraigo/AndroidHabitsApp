@@ -29,6 +29,7 @@ import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.DateUtils;
+import me.franciscoigor.habits.base.LocaleHelper;
 import me.franciscoigor.habits.base.SingleFragmentActivity;
 import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
@@ -68,11 +69,6 @@ public class MainActivity extends SingleFragmentActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-    }
-
-    protected void snackbarMessage(View view, String message){
-        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     @Override
@@ -147,26 +143,31 @@ public class MainActivity extends SingleFragmentActivity
         if (viewId == R.id.nav_today){
             setTitle(R.string.menu_today);
             loadFragment(fragment = ActionListFragment.newInstance(DateUtils.today().getTime()),true);
+            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
             return true;
         }
         if (viewId == R.id.nav_yesterday){
             setTitle(R.string.menu_yesterday);
             loadFragment(fragment = ActionListFragment.newInstance(DateUtils.yesterday().getTime()),true);
+            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
             return true;
         }
         if (viewId == R.id.nav_tasks) {
             setTitle(R.string.menu_tasks);
             loadFragment(fragment = TaskListFragment.newInstance(null), true);
+            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
             return true;
         }
         if (viewId == R.id.nav_stats) {
             setTitle(R.string.menu_stats);
             loadFragment(fragment = StatsFragment.newInstance(null), true);
+            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
             return true;
         }
         if (viewId == R.id.nav_manage) {
             setTitle(R.string.menu_manage);
             loadFragment(fragment = OptionsFragment.newInstance(null), true);
+            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
             return true;
         }
         return false;
@@ -176,46 +177,29 @@ public class MainActivity extends SingleFragmentActivity
     protected void onStart() {
         super.onStart();
 
-        DataModel optTmp =OptionsModel.getOption(OptionsModel.OPT_LOCALE);
+        DataModel optTmp = OptionsModel.getOption(OptionsModel.OPT_LOCALE);
         if (optTmp != null){
-            MainActivity.setLocale(this, optTmp.getStringValue(OptionsModel.FIELD_VALUE));
-        }
-
-        if (TaskActionModel.getItems(TaskActionModel.TABLE_NAME).size()==0){
-            goToView(R.id.nav_tasks);
+            LocaleHelper.setLocale(this, optTmp.getStringValue(OptionsModel.FIELD_VALUE));
         }else{
-            goToView(R.id.nav_today);
+
         }
 
-
-        //NotifierActivity.startNotifier(this);
-    }
-
-
-
-    public static void setLocale(Activity activity, String lang) {
-        String current = activity.getResources().getConfiguration().locale.getLanguage();
-
-        Locale myLocale = new Locale(lang);
-        Resources res = activity.getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-        if (!current.equals(lang)){
-            Intent refresh = new Intent(activity, activity.getClass());
-            activity.startActivity(refresh);
-            activity.finish();
+        DataModel optView = OptionsModel.getOption(OptionsModel.OPT_STARTVIEW);
+        boolean viewOk = false;
+        if (optView != null){
+            int viewId = optView.getIntValue(OptionsModel.FIELD_VALUE);
+            viewOk = goToView(viewId);
+        }
+        if (!viewOk){
+            if (TaskActionModel.getItems(TaskActionModel.TABLE_NAME).size()==0){
+                goToView(R.id.nav_tasks);
+            }else{
+                goToView(R.id.nav_today);
+            }
         }
 
     }
 
-    public static void confirmDialog(Activity activity, String message, DialogInterface.OnClickListener listener){
-        new AlertDialog.Builder(activity)
-                .setTitle("Confirmation")
-                .setMessage(message)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, listener)
-                .setNegativeButton(android.R.string.no, null).show();
-    }
+
+
 }

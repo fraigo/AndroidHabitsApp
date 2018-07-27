@@ -114,6 +114,10 @@ public class TaskModel extends DataModel {
         return result;
     }
 
+    public static String getCategoryName(Activity activity, String category){
+        return getString(activity, category);
+    }
+
     public static String getString(Activity activity, String stringId){
         if (stringId==null) return null;
         int id = activity.getResources().getIdentifier(stringId, "string", activity.getPackageName());
@@ -122,8 +126,8 @@ public class TaskModel extends DataModel {
 
 
     public static int getColor(DataModel model) {
-        String category = model.getStringValue(FIELD_FREQUENCY);
-        int pos= Arrays.asList(FREQUENCIES).indexOf(category);
+        String frequency = model.getStringValue(FIELD_FREQUENCY);
+        int pos= Arrays.asList(FREQUENCIES).indexOf(frequency);
         return Color.parseColor(COLORS[pos]);
     }
 }

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import me.franciscoigor.habits.R;
+import me.franciscoigor.habits.controllers.NotifierActivity;
 
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
@@ -27,6 +28,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         DatabaseHelper.getDatabase(this.getApplicationContext());
         //Load fragment content
         loadFragment(createFragment(),false);
+        //start notifier
+        NotifierActivity.startNotifier(this.getApplicationContext());
     }
 
 
