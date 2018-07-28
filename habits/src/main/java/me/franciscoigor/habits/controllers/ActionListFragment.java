@@ -52,44 +52,9 @@ public class ActionListFragment extends ListFragment {
     protected void setupAdapter(ItemAdapter adapter) {
         Date current = new Date(mDate);
         String currentDate = DateUtils.format(current);
-        String currentWeekDay = DateUtils.weekDay(current);
         String todayDate = DateUtils.format(DateUtils.today());
-
-        System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
-        String[] columns = { "tasks.*"};
-
-        ArrayList<DataModel> filtered=adapter.findItems(
-                String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
-                columns,
-                String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') OR ( tasks.%s = '%s' and  '%s' not in ('saturday','sunday') ) OR ( tasks.%s = '%s' and  '%s' in ('saturday','sunday') ))",
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_DAILY,
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_WEEKLY,
-                        TaskModel.FIELD_FREQ_DETAIL,
-                        currentWeekDay,
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_WEEKDAYS,
-                        currentWeekDay,
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_WEEKENDS,
-                        currentWeekDay
-                ),
-                null);
         if (todayDate.equals(currentDate)){
-            for (DataModel item: filtered) {
-                adapter.addItem(new TaskActionModel(
-                                item.getIntValue("_id"),
-                                item.getStringValue(TaskModel.FIELD_TITLE),
-                                current,
-                                item.getStringValue(TaskModel.FIELD_TIME),
-                                item.getStringValue(TaskModel.FIELD_FREQUENCY),
-                                0,
-                                false,
-                                false
-                        )
-                );
-            }
+            TaskActionModel.createTaskActions(current, adapter);
         }
 
     }
@@ -101,7 +66,7 @@ public class ActionListFragment extends ListFragment {
 
     private class TaskItemHolder extends ItemHolder{
 
-        TextView mTextName, mTextDescription, mTextCategory;
+        TextView mTextName, mTextDescription, mTextDetail, mTextCategory;
         ImageView mDelete, mIcon;
         DataModel model;
         LinearLayout container;
@@ -117,7 +82,8 @@ public class ActionListFragment extends ListFragment {
             });
             mTextName = view.findViewById(R.id.task_list_item_title);
             mTextDescription = view.findViewById(R.id.task_list_item_description);
-            mTextCategory = view.findViewById(R.id.task_list_item_frequency);
+            mTextDetail = view.findViewById(R.id.task_list_item_frequency);
+            mTextCategory = view.findViewById(R.id.task_list_item_category1);
             mDelete = view.findViewById(R.id.task_list_item_delete);
             mDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -144,16 +110,20 @@ public class ActionListFragment extends ListFragment {
         @Override
         public void bind(DataModel model) {
             this.model=model;
-            String categoryName = TaskModel.getString(getActivity(), model.getStringValue(TaskActionModel.FIELD_FREQUENCY));
+            System.out.println(model);
+            String frequencyName = TaskModel.getString(getActivity(), model.getStringValue(TaskActionModel.FIELD_FREQUENCY));
             mTextName.setText(model.getStringValue(TaskActionModel.FIELD_TITLE));
             mTextDescription.setText(model.getStringValue(TaskActionModel.FIELD_TIME_MINUTES) + " " + getString(R.string.minutes));
-            mTextCategory.setText(categoryName + " @ " +model.getStringValue(TaskActionModel.FIELD_TIME) + " " +
+            mTextDetail.setText(frequencyName + " @ " +model.getStringValue(TaskActionModel.FIELD_TIME) + " " +
                     " " + model.getStringValue(TaskActionModel.FIELD_DATE));
+            String categoryName = TaskModel.getCategoryName(getActivity(),model.getStringValue(TaskActionModel.FIELD_CATEGORY));
+            mTextCategory.setText(categoryName);
+            mTextCategory.setBackgroundColor(TaskModel.getColor(model));
 
             if (model.getBooleanValue(TaskActionModel.FIELD_FINISHED)){
-                mIcon.setImageResource(android.R.drawable.checkbox_on_background);
+                mIcon.setImageResource(R.drawable.checkbox_on);
             }else{
-                mIcon.setImageResource(android.R.drawable.checkbox_off_background);
+                mIcon.setImageResource(R.drawable.checkbox_off);
             }
             // set visibility
             container.setBackgroundColor(Color.WHITE);
@@ -167,6 +137,7 @@ public class ActionListFragment extends ListFragment {
                     container.setVisibility(View.GONE);
                 }
             }
+
         }
     }
 

@@ -6,13 +6,12 @@
     <string name="nav_header_subtitle">Tu coach personal</string>
     <string name="nav_header_desc">Menu</string>
 
-    <string name="menu_tasks">Todas las tareas</string>
+    <string name="menu_tasks">Planificar tareas</string>
     <string name="menu_manage">Configurar</string>
     <string name="menu_today">Para Hoy</string>
     <string name="menu_stats">Estadísticas</string>
     <string name="menu_yesterday">Ayer</string>
 
-    <string name="section_review">Revisión</string>
     <string name="section_general">General</string>
     <string name="section_options">Opciones</string>
 

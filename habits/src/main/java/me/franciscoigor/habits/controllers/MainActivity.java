@@ -30,6 +30,7 @@ import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.LocaleHelper;
+import me.franciscoigor.habits.base.NotificationHelper;
 import me.franciscoigor.habits.base.SingleFragmentActivity;
 import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
@@ -38,12 +39,21 @@ import me.franciscoigor.habits.models.TaskModel;
 public class MainActivity extends SingleFragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static Fragment fragment;
+    private static Fragment fragment;
+    boolean fromNotification = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent currentIntent = getIntent();
+        String notificationParam = currentIntent.getStringExtra(NotificationHelper.EXTRA_PARAM_NOTIFICATION);
+        if (notificationParam != null){
+            System.out.println("Creating with param "+ notificationParam);
+            fromNotification = true;
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -177,6 +187,16 @@ public class MainActivity extends SingleFragmentActivity
     protected void onStart() {
         super.onStart();
 
+        System.out.println("Starting app");
+        Intent currentIntent = getIntent();
+        String notificationParam = currentIntent.getStringExtra(NotificationHelper.EXTRA_PARAM_NOTIFICATION);
+        if (notificationParam != null){
+            System.out.println("Starting with param "+ notificationParam);
+            fromNotification = true;
+            goToView(R.id.nav_today);
+        }
+
+
         DataModel optTmp = OptionsModel.getOption(OptionsModel.OPT_LOCALE);
         if (optTmp != null){
             LocaleHelper.setLocale(this, optTmp.getStringValue(OptionsModel.FIELD_VALUE));
@@ -199,7 +219,5 @@ public class MainActivity extends SingleFragmentActivity
         }
 
     }
-
-
 
 }

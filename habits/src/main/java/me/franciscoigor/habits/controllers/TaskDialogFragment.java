@@ -23,6 +23,7 @@ import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.ItemDialogFragment;
 import me.franciscoigor.habits.base.ListFragment;
+import me.franciscoigor.habits.base.StringHelper;
 import me.franciscoigor.habits.base.TimeDataPicker;
 import me.franciscoigor.habits.models.TaskModel;
 
@@ -186,7 +187,7 @@ public class TaskDialogFragment extends ItemDialogFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                item.setValue(TaskModel.FIELD_TITLE,s.toString());
+                item.setValue(TaskModel.FIELD_TITLE, StringHelper.upperCaseFirst(s.toString()));
             }
 
             @Override

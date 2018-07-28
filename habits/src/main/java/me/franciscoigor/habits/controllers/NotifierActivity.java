@@ -13,12 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.DateUtils;
+import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.base.NotificationHelper;
 import me.franciscoigor.habits.base.Storage;
 import me.franciscoigor.habits.models.OptionsModel;
@@ -49,6 +51,8 @@ public class NotifierActivity extends BroadcastReceiver {
         String currentDate= DateUtils.format(DateUtils.today());
         System.out.println(DatabaseHelper.getDatabase(context).getAttachedDbs());
 
+        TaskActionModel.createTaskActions(DateUtils.today(), null);
+
         String dateCondition = String.format("%s = '%s' AND %s = '%d' AND  %s = '%d' ", TaskActionModel.FIELD_DATE,currentDate, TaskActionModel.FIELD_FINISHED , 0, TaskActionModel.FIELD_DELETED, 0);
         ArrayList<DataModel> filtered= DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, dateCondition ,null);
         System.out.println("Tasks:" + filtered);
@@ -67,24 +71,6 @@ public class NotifierActivity extends BroadcastReceiver {
 
     }
 
-    public static void notifyUser(Context context, String title, String message){
-        if (appIntent == null){
-            Intent intent = new Intent(context, MainActivity.class);
-            appIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        }
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "MAIN")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(appIntent)
-                .setAutoCancel(true);
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        Storage.addInt("NOTIFICATION_ID",1);
-        int id = Storage.getInt("NOTIFICATION_ID",1);
-        notificationManager.notify(id, mBuilder.build());
-    }
 
 
 

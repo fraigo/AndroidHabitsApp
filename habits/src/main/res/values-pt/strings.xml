@@ -6,13 +6,12 @@
     <string name="nav_header_subtitle">Treine seus hábitos</string>
     <string name="nav_header_desc">Menu</string>
 
-    <string name="menu_tasks">Todas as tarefas</string>
+    <string name="menu_tasks">Planejar tarefas</string>
     <string name="menu_manage">Configurar</string>
     <string name="menu_today">Tarefas do dia</string>
     <string name="menu_stats">Estatísticas</string>
     <string name="menu_yesterday">Ontem</string>
 
-    <string name="section_review">Revisar</string>
     <string name="section_general">Geral</string>
     <string name="section_options">Opções</string>
 

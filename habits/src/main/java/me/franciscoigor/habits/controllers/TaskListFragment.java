@@ -1,6 +1,7 @@
 package me.franciscoigor.habits.controllers;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -159,7 +160,13 @@ public class TaskListFragment extends ListFragment {
         public void bind(DataModel model) {
             this.model=model;
             System.out.println(model);
+            Boolean active = model.getBooleanValue(TaskModel.FIELD_ENABLED);
             mTextName.setText(model.getStringValue(TaskModel.FIELD_TITLE));
+            if (!active){
+                mTextName.setTextColor(Color.LTGRAY);
+            }else{
+                mTextName.setTextColor(Color.GRAY);
+            }
             mTextDescription.setText(model.getStringValue(TaskModel.FIELD_DESCRIPTION));
             String category = model.getStringValue(TaskModel.FIELD_FREQUENCY);
             String categoryName = TaskModel.getCategoryName(getActivity(),model.getStringValue(TaskModel.FIELD_CATEGORY));

@@ -3,18 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="@string/section_review">
-        <menu>
-            <item
-                android:id="@+id/nav_today"
-                android:icon="@android:drawable/ic_menu_day"
-                android:title="@string/menu_today" />
-            <item
-                android:id="@+id/nav_yesterday"
-                android:icon="@android:drawable/ic_menu_day"
-                android:title="@string/menu_yesterday" />
-        </menu>
-    </item>
+
+    <item
+        android:id="@+id/nav_today"
+        android:icon="@android:drawable/ic_menu_day"
+        android:title="@string/menu_today" />
+    <item
+        android:id="@+id/nav_yesterday"
+        android:icon="@android:drawable/ic_menu_day"
+        android:title="@string/menu_yesterday" />
 
     <item android:title="@string/section_general">
         <menu>

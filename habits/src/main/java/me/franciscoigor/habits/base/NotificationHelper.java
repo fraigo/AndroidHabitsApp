@@ -15,31 +15,37 @@ import android.widget.Toast;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+import me.franciscoigor.habits.controllers.MainActivity;
+
 public class NotificationHelper extends ContextWrapper {
 
     public static final String DEFAULT_CHANNEL = "Default";
     public static final String URGENT_CHANNEL = "Urgent";
     private NotificationManagerCompat manager;
-    private PendingIntent appIntent;
+    public static final String EXTRA_PARAM_NOTIFICATION = "notification";
+    Context currentContext;
+    Class activityClass;
+
 
     public NotificationHelper(Context context, Class className) {
         super(context);
         manager = NotificationManagerCompat.from(getApplicationContext());
-        appIntent = getApplicationIntent(className);
         createNotificationChannel(DEFAULT_CHANNEL,DEFAULT_CHANNEL, NotificationManager.IMPORTANCE_DEFAULT);
         createNotificationChannel(URGENT_CHANNEL,URGENT_CHANNEL, NotificationManager.IMPORTANCE_MAX);
-
+        currentContext = context;
+        activityClass = className;
     }
 
-    public PendingIntent getApplicationIntent(Class applicationClass){
+    public PendingIntent getApplicationIntent(Class applicationClass, String param){
         Intent contentIntent = new Intent(getApplicationContext(), applicationClass);
         contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        contentIntent.putExtra(EXTRA_PARAM_NOTIFICATION, param);
         return PendingIntent.getActivity(getApplicationContext(), 0,
-                contentIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                contentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     public NotificationCompat.Builder getNotification(String title, String body, String channel) {
-
+        PendingIntent appIntent = getApplicationIntent(activityClass, title);
         return new NotificationCompat.Builder(getApplicationContext(),channel)
                 .setContentTitle(title)
                 .setContentText(body)

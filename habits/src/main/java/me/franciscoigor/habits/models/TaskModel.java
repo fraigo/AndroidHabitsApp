@@ -4,9 +4,13 @@ package me.franciscoigor.habits.models;
 import android.app.Activity;
 import android.graphics.Color;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import me.franciscoigor.habits.base.DataModel;
+import me.franciscoigor.habits.base.DatabaseHelper;
+import me.franciscoigor.habits.base.DateUtils;
 
 public class TaskModel extends DataModel {
 
@@ -56,6 +60,7 @@ public class TaskModel extends DataModel {
                 "#008080",
                 "#FF8040",
                 "#800080",
+                "#80C020",
                 "#808080"
         };
         String[] categories={
@@ -126,8 +131,37 @@ public class TaskModel extends DataModel {
 
 
     public static int getColor(DataModel model) {
-        String frequency = model.getStringValue(FIELD_FREQUENCY);
-        int pos= Arrays.asList(FREQUENCIES).indexOf(frequency);
+        String frequency = model.getStringValue(FIELD_CATEGORY);
+        int pos= Arrays.asList(CATEGORIES).indexOf(frequency);
         return Color.parseColor(COLORS[pos]);
+    }
+
+    public static ArrayList<DataModel> currentTasks(Date current) {
+        String currentDate = DateUtils.format(current);
+        String currentWeekDay = DateUtils.weekDay(current);
+        String todayDate = DateUtils.format(DateUtils.today());
+
+        System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
+
+        String[] columns = { "tasks.*"};
+        ArrayList<DataModel> filtered= DatabaseHelper.getItems(
+                String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
+                columns,
+                String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') OR ( tasks.%s = '%s' and  '%s' not in ('saturday','sunday') ) OR ( tasks.%s = '%s' and  '%s' in ('saturday','sunday') ))",
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_DAILY,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_WEEKLY,
+                        TaskModel.FIELD_FREQ_DETAIL,
+                        currentWeekDay,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_WEEKDAYS,
+                        currentWeekDay,
+                        TaskModel.FIELD_FREQUENCY,
+                        TaskModel.FREQUENCY_WEEKENDS,
+                        currentWeekDay
+                ),
+                null);
+        return filtered;
     }
 }
