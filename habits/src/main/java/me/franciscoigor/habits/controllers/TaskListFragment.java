@@ -136,7 +136,7 @@ public class TaskListFragment extends ListFragment {
             mDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DialogHelper.confirmDialog(getActivity(), "Are you sure ?", new DialogInterface.OnClickListener() {
+                    DialogHelper.confirmDialog(getActivity(), getActivity().getString(R.string.are_you_sure), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             getAdapter().deleteItem(model);

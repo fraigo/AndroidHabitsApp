@@ -49,7 +49,7 @@
     <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
 
-    <string name="health">Health</string>
+    <string name="health">Salud</string>
     <string name="study">Study</string>
     <string name="work">Work</string>
     <string name="financial">Financial</string>
@@ -57,5 +57,6 @@
     <string name="entertainment">Entertainment</string>
     <string name="other">Other</string>
     <string name="option_notifications">Notifications</string>
+    <string name="task">Tareas</string>
 
 </resources>

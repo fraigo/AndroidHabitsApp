@@ -8,7 +8,7 @@
 
     <string name="menu_tasks">Task Planning</string>
     <string name="menu_manage">Configure</string>
-    <string name="menu_today">Today's tasks</string>
+    <string name="menu_today">Today\'s tasks</string>
     <string name="menu_stats">Statistics</string>
 
     <string name="section_general">General</string>

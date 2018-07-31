@@ -50,13 +50,13 @@
     <string name="saturday">Cumartesi</string>
     <string name="sunday">Pazar</string>
 
-    <string name="health">Health</string>
-    <string name="study">Study</string>
-    <string name="work">Work</string>
-    <string name="financial">Financial</string>
-    <string name="home">Home</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="other">Other</string>
-    <string name="option_notifications">Notifications</string>
+    <string name="health">Sağlık</string>
+    <string name="study">Egitim</string>
+    <string name="work">Calisma</string>
+    <string name="financial">Finans</string>
+    <string name="home">Ev</string>
+    <string name="entertainment">Eglence</string>
+    <string name="other">Diger</string>
+    <string name="option_notifications">Bildirimler</string>
 
 </resources>
