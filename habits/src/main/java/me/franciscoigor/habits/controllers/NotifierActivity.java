@@ -57,7 +57,7 @@ public class NotifierActivity extends BroadcastReceiver {
         ArrayList<DataModel> filtered= DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, dateCondition ,null);
         System.out.println("Tasks:" + filtered);
         if (filtered.size()>0) {
-            String message = String.format("%d pending task(s) for today", filtered.size());
+            String message = String.format(context.getString(R.string.msg_tasks_pending), filtered.size());
             String names= "";
             for (DataModel model: filtered
                  ) {

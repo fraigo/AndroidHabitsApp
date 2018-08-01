@@ -1,64 +1,66 @@
 <resources>
-    <string name="app_name">Habits</string>
-    <string name="navigation_drawer_open">Open menu</string>
-    <string name="navigation_drawer_close">Close menu</string>
-    <string name="nav_header_title">Habits</string>
-    <string name="nav_header_subtitle">Your habit coach</string>
-    <string name="nav_header_desc">Menu</string>
+    <string name="app_name">習慣</string>
+    <string name="navigation_drawer_open">メニューを開く</string>
+    <string name="navigation_drawer_close">メニューを閉じる</string>
+    <string name="nav_header_title">習慣</string>
+    <string name="nav_header_subtitle">習慣化コーチ</string>
+    <string name="nav_header_desc">メニュー</string>
 
-    <string name="menu_tasks">Task Planning</string>
-    <string name="menu_manage">Configure</string>
-    <string name="menu_today">Today\'s tasks</string>
-    <string name="menu_stats">Statistics</string>
+    <string name="menu_tasks">タスク計画作成</string>
+    <string name="menu_manage">設定</string>
+    <string name="menu_today">本日のタスク</string>
+    <string name="menu_stats">結果</string>
 
-    <string name="section_general">General</string>
-    <string name="section_options">Options</string>
+    <string name="section_general">一般</string>
+    <string name="section_options">オプション</string>
 
-    <string name="option_view_deleted">View deleted tasks</string>
-    <string name="stats_total">Total Tasks</string>
-    <string name="stats_completed">Completed tasks</string>
-    <string name="stats_incompleted">Incompleted tasks</string>
-    <string name="stats_overall">Overall Stats</string>
-    <string name="stats_today">Today Stats</string>
+    <string name="option_view_deleted">削除したタスクの閲覧</string>
+    <string name="stats_total">タスクの合計</string>
+    <string name="stats_completed">完了したタスク</string>
+    <string name="stats_incompleted">未完了タスク</string>
+    <string name="stats_overall">全体の結果</string>
+    <string name="stats_today">本日の結果</string>
 
-    <string name="enabled">Enabled</string>
-    <string name="language">Language</string>
-    <string name="minutes">Minutes</string>
-    <string name="are_you_sure">Are you sure?</string>
-    <string name="frequency">Frequency</string>
+    <string name="enabled">有効</string>
+    <string name="language">言語</string>
+    <string name="minutes">分</string>
+    <string name="are_you_sure">これでよろしいですか？</string>
+    <string name="frequency">頻度</string>
 
-    <string name="task">Task</string>
-    <string name="task_title">Task Title</string>
-    <string name="task_category">Category</string>
-    <string name="task_status">Status</string>
-    <string name="task_description">Description</string>
-    <string name="task_time">Time</string>
+    <string name="task">タスク</string>
+    <string name="task_title">タスク名</string>
+    <string name="task_category">カテゴリー</string>
+    <string name="task_status">状態</string>
+    <string name="task_description">説明</string>
+    <string name="task_time">時間</string>
 
-    <string name="daily">Daily</string>
-    <string name="weekly">Weekly</string>
-    <string name="monthly">Monthly</string>
-    <string name="one_time">One time</string>
-    <string name="weekdays">Weekdays</string>
-    <string name="weekends">Weekend</string>
+    <string name="daily">毎日</string>
+    <string name="weekly">毎週</string>
+    <string name="monthly">毎月</string>
+    <string name="one_time">繰り返さない</string>
+    <string name="weekdays">平日</string>
+    <string name="weekends">週末</string>
 
 
-    <string name="monday">Monday</string>
-    <string name="tuesday">Tuesday</string>
-    <string name="wednesday">Wednesday</string>
-    <string name="thursday">Thursday</string>
-    <string name="friday">Friday</string>
-    <string name="saturday">Saturday</string>
-    <string name="sunday">Sunday</string>
-    <string name="menu_yesterday">Yesterday</string>
+    <string name="monday">月曜</string>
+    <string name="tuesday">火曜</string>
+    <string name="wednesday">水曜</string>
+    <string name="thursday">木曜</string>
+    <string name="friday">金曜</string>
+    <string name="saturday">土曜</string>
+    <string name="sunday">日曜</string>
+    <string name="menu_yesterday">昨日</string>
 
-    <string name="health">Health</string>
-    <string name="study">Study</string>
-    <string name="work">Work</string>
-    <string name="financial">Financial</string>
-    <string name="home">Home</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="other">Other</string>
-    <string name="option_notifications">Notifications</string>
+    <string name="health">健康</string>
+    <string name="study">勉強</string>
+    <string name="work">仕事</string>
+    <string name="financial">ファイナンシャル</string>
+    <string name="home">家事</string>
+    <string name="entertainment">娯楽</string>
+    <string name="other">その他</string>
+    <string name="option_notifications">通知</string>
+
+    <string name="msg_tasks_pending">%d pending task(s) for today</string>
 
 
 </resources>

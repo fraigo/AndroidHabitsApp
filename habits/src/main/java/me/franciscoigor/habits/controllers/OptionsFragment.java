@@ -83,17 +83,20 @@ public class OptionsFragment extends Fragment {
 
         final String[] languages = {
                 "en",
+                "zn",
+                "ja",
+                "pt",
                 "es",
-                "tr",
-                "ch",
-                "pt"
+                "tr"
+
         };
         final String[] languageNames = {
                 "English",
-                "Spanish (Español)",
-                "Turkish (Türkçe)",
                 "Chinese (中文)",
-                "Portuguese (Português)"
+                "Japanese (日本語)",
+                "Portuguese (Português)",
+                "Spanish (Español)",
+                "Turkish (Türkçe)"
         };
 
         optTmp =OptionsModel.getOption(OptionsModel.OPT_LOCALE);

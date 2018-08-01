@@ -28,6 +28,7 @@
     <string name="are_you_sure">Está seguro?</string>
     <string name="frequency">Frequency</string>
 
+    <string name="task">Tarea</string>
     <string name="task_title">Título</string>
     <string name="task_category">Categoría</string>
     <string name="task_status">Estado</string>
@@ -50,13 +51,14 @@
     <string name="sunday">Domingo</string>
 
     <string name="health">Salud</string>
-    <string name="study">Study</string>
-    <string name="work">Work</string>
-    <string name="financial">Financial</string>
-    <string name="home">Home</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="other">Other</string>
-    <string name="option_notifications">Notifications</string>
-    <string name="task">Tareas</string>
+    <string name="study">Estudio</string>
+    <string name="work">Trabajo</string>
+    <string name="financial">Finanzas</string>
+    <string name="home">Hogar</string>
+    <string name="entertainment">Entretención</string>
+    <string name="other">Otros</string>
+    <string name="option_notifications">Notificaciones</string>
+
+    <string name="msg_tasks_pending">%d tarea(s) pendientes para hoy</string>
 
 </resources>

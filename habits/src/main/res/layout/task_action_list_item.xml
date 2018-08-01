@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_height="58dp"
             android:layout_margin="8dp"
             android:src="@drawable/checkbox_on"
-            app:tintMode="src_in" />
+            android:tintMode="src_in" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             android:layout_margin="14dp"
             android:src="@android:drawable/ic_notification_clear_all"
             android:tint="@color/colorHigh"
-            app:tintMode="src_in" />
+            android:tintMode="src_in" />
 
     </LinearLayout>
 

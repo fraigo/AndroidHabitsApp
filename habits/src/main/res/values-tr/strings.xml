@@ -51,12 +51,14 @@
     <string name="sunday">Pazar</string>
 
     <string name="health">Sağlık</string>
-    <string name="study">Egitim</string>
-    <string name="work">Calisma</string>
+    <string name="study">Eğitim</string>
+    <string name="work">Çalışma</string>
     <string name="financial">Finans</string>
     <string name="home">Ev</string>
-    <string name="entertainment">Eglence</string>
-    <string name="other">Diger</string>
+    <string name="entertainment">Eğlence</string>
+    <string name="other">Diğer</string>
     <string name="option_notifications">Bildirimler</string>
+
+    <string name="msg_tasks_pending">Bugün için %d bekleyen görev</string>
 
 </resources>

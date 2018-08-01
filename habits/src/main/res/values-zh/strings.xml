@@ -61,5 +61,7 @@
     <string name="other">Other</string>
     <string name="option_notifications">Notifications</string>
 
+    <string name="msg_tasks_pending">%d pending task(s) for today</string>
+
 
 </resources>

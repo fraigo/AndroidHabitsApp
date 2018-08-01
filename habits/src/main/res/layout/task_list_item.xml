@@ -107,7 +107,7 @@
             android:layout_marginTop="14dp"
             android:src="@android:drawable/ic_notification_clear_all"
             android:tint="@color/colorHigh"
-            app:tintMode="src_in" />
+            android:tintMode="src_in" />
 
     </LinearLayout>
 
