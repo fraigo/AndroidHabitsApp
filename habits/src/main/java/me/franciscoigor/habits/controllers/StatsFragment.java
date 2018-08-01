@@ -12,6 +12,7 @@ import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.models.TaskActionModel;
+import me.franciscoigor.habits.models.TaskModel;
 
 public class StatsFragment extends Fragment {
 
@@ -93,6 +94,18 @@ public class StatsFragment extends Fragment {
             totalToday = 1;
         }
         bar2.setText((completedToday * 100 / totalToday) + "%");
+
+        String[] categories = TaskModel.CATEGORIES;
+        for (int i = 0; i < categories.length; i++) {
+            condition =  String.format(" %s.%s = '%s'", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_CATEGORY, categories[i]);
+            int totalCat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
+            int resID = getResources().getIdentifier( String.format("stats_%s_total" , categories[i]), "id", getActivity().getPackageName());
+            label = view.findViewById(resID);
+
+            condition =  String.format(" %s.%s = '%d' and %s.%s = '%s'", TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_FINISHED, 1, TaskActionModel.TABLE_NAME, TaskActionModel.FIELD_CATEGORY, categories[i]);
+            int finishedCat = DatabaseHelper.getItems(TaskActionModel.TABLE_NAME, null, condition + globalCondition, null).size();
+            label.setText(String.format("%d / %d", finishedCat, totalCat));
+        }
 
         return view;
     }

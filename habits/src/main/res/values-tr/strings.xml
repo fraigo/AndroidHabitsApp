@@ -60,5 +60,6 @@
     <string name="option_notifications">Bildirimler</string>
 
     <string name="msg_tasks_pending">Bugün için %d bekleyen görev</string>
+    <string name="tasks_by_category">Görev Kategorileri</string>
 
 </resources>

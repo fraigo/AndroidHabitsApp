@@ -26,7 +26,7 @@
     <string name="language">Idioma</string>
     <string name="minutes">Minutos</string>
     <string name="are_you_sure">Está seguro?</string>
-    <string name="frequency">Frequency</string>
+    <string name="frequency">Frecuencia</string>
 
     <string name="task">Tarea</string>
     <string name="task_title">Título</string>
@@ -60,5 +60,6 @@
     <string name="option_notifications">Notificaciones</string>
 
     <string name="msg_tasks_pending">%d tarea(s) pendientes para hoy</string>
+    <string name="tasks_by_category">Tasks by category</string>
 
 </resources>

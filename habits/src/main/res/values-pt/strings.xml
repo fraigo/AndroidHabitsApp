@@ -51,15 +51,16 @@
     <string name="sunday">Domingo</string>
 
 
-    <string name="health">Health</string>
-    <string name="study">Study</string>
-    <string name="work">Work</string>
-    <string name="financial">Financial</string>
-    <string name="home">Home</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="other">Other</string>
-    <string name="option_notifications">Notifications</string>
+    <string name="health">Saude</string>
+    <string name="study">Estudo</string>
+    <string name="financial">Finanças</string>
+    <string name="home">Casa</string>
+    <string name="entertainment">Entreterimento</string>
+    <string name="other">Outros</string>
+    <string name="option_notifications">Notificações</string>
 
-    <string name="msg_tasks_pending">%d pending task(s) for today</string>
+    <string name="msg_tasks_pending">Aguardando %d tarefa(s) para hoje</string>
+    <string name="work">Trabalho</string>
+    <string name="tasks_by_category">Tasks by category</string>
 
 </resources>
