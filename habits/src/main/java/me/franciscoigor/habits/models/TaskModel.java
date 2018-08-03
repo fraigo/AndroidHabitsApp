@@ -12,6 +12,13 @@ import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.DateUtils;
 
+/**
+ * Data model for base tasks.
+ *
+ * Table name: tasks
+ *
+ * Objective: To save tasks configurations, and create task actions based on this tasks
+ */
 public class TaskModel extends DataModel {
 
     public static final String TABLE_NAME = "tasks";

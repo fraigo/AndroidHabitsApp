@@ -8,6 +8,11 @@ import android.util.DisplayMetrics;
 
 import java.util.Locale;
 
+/**
+ * LocaleHelper
+ *
+ * Common methods to set and change the current application localization (language)
+ */
 public class LocaleHelper {
 
     public static void setLocale(Activity activity, String lang) {

@@ -9,6 +9,13 @@ import me.franciscoigor.habits.base.DatabaseHelper;
 import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.ListFragment;
 
+/**
+ * Data model for daily activities created from tasks.
+ *
+ * Table name: taskActions
+ *
+ * Objective: To save each instance of a task created to be accomplished in a specific date
+ */
 public class TaskActionModel extends DataModel {
 
     public static final String TABLE_NAME = "taskActions";

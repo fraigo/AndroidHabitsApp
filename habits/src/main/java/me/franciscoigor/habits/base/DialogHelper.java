@@ -6,6 +6,11 @@ import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
+/**
+ * DialogHelper
+ *
+ * Basic helper to create specific dialogs for the application
+ */
 public class DialogHelper {
 
 

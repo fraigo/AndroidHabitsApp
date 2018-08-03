@@ -27,6 +27,11 @@ import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
+/**
+ * MainActivity
+ *
+ * Main application controller, to hold the application layout and change views
+ */
 public class MainActivity extends SingleFragmentActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

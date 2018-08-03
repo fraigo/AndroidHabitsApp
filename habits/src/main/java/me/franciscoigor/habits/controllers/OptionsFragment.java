@@ -25,7 +25,11 @@ import me.franciscoigor.habits.base.NotificationHelper;
 import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskModel;
 
-
+/**
+ * OptionsFragment
+ *
+ * Controller for the options view, to change application settings
+ */
 public class OptionsFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

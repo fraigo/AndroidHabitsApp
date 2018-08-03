@@ -8,7 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.controllers.NotifierActivity;
 
-
+/**
+ * SingleFragmentActivity
+ *
+ * Base class to extends single fragment activities
+ */
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
 

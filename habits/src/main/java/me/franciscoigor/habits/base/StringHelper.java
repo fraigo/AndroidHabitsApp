@@ -6,6 +6,9 @@ public class StringHelper {
         if (text == null ) {
             return null;
         }
+        if (text.length()==0) {
+            return text;
+        }
         if (text.length()==1) {
             return text.toUpperCase();
         }

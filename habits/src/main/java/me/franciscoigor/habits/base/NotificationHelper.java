@@ -17,6 +17,12 @@ import java.lang.reflect.Method;
 
 import me.franciscoigor.habits.controllers.MainActivity;
 
+/**
+ * NotificationHelper
+ *
+ * Helper class to create and manage Notifications.
+ * Compatible with API level 21 and up
+ */
 public class NotificationHelper extends ContextWrapper {
 
     public static final String DEFAULT_CHANNEL = "Default";

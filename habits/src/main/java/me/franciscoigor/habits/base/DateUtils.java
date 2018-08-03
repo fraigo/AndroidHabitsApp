@@ -7,6 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * DateUtils
+ *
+ * Some common date operations and tasks
+ */
 public class DateUtils {
 
     public static final String WEEKDAY_MONDAY = "monday";

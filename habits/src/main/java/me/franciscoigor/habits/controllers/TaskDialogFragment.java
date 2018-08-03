@@ -27,7 +27,11 @@ import me.franciscoigor.habits.base.StringHelper;
 import me.franciscoigor.habits.base.TimeDataPicker;
 import me.franciscoigor.habits.models.TaskModel;
 
-
+/**
+ * Controller for the Task editor dialog
+ *
+ * To create a task editor based on a specific item, or a new item
+ */
 public class TaskDialogFragment extends ItemDialogFragment {
 
     public static final String DIALOG_ITEM = "item";

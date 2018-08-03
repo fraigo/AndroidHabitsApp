@@ -9,6 +9,11 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Storage
+ *
+ * Helper class to storage data in application preferences
+ */
 public class Storage {
 
     public final static String SAVED_DATA="saved_data";

@@ -27,7 +27,12 @@ import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
-
+/**
+ * NotifierActivity
+ *
+ * Notifier process launched in a repeated loop following a frequency (10 min by default)
+ * Checks for new tasks and shows a local notification when some tasks are not finished.
+ */
 public class NotifierActivity extends BroadcastReceiver {
 
     static PendingIntent appIntent;

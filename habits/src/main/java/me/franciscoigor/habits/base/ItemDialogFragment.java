@@ -10,6 +10,11 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 
+/**
+ * ItemDialogFragment
+ *
+ * Base class for create and fill the content of a user dialog with this fragment
+ */
 public abstract class ItemDialogFragment extends DialogFragment {
 
     private static final String ARG_ITEM = "item";

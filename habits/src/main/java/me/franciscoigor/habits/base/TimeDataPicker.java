@@ -10,6 +10,11 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+ /**
+  * TimeDataPicker
+  *
+  * Special dialog to choose a specific time (hours)
+  */
  public class TimeDataPicker extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 

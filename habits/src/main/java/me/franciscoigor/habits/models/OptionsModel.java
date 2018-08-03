@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import me.franciscoigor.habits.base.DataModel;
 import me.franciscoigor.habits.base.DatabaseHelper;
 
+/**
+ * Data model for options.
+ *
+ * Table name: options
+ *
+ * Objective: To save application settings
+ */
 public class OptionsModel extends DataModel {
 
     public static final String TABLE_NAME = "options";

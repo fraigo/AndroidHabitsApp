@@ -10,6 +10,12 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * DataModel
+ *
+ * Base class for creating data models used in the application.
+ * Used for define table name, fields and put and get data.
+ */
 public class DataModel {
     private String name;
     private ArrayList<String> fieldNames;

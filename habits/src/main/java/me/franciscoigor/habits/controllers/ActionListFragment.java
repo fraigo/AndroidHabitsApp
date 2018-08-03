@@ -20,7 +20,12 @@ import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
-
+/**
+ * ActionListFragment
+ *
+ * Controller for task actions for a specific date
+ * The parameter allows to set up a specific date, normally today's date
+ */
 public class ActionListFragment extends ListFragment {
 
     private String viewModel = "taskActions";

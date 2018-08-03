@@ -9,6 +9,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * DatabaseHelper Class
+ *
+ * Helps to create, connect and query to a local SQLite database
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;

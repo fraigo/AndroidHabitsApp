@@ -13,7 +13,11 @@ import java.util.ArrayList;
 
 import me.franciscoigor.habits.R;
 
-
+/**
+ * ListFragment
+ *
+ * Base List container for manage item lists in RecyclerView
+ */
 public abstract class ListFragment extends Fragment {
     private RecyclerView recyclerView;
     private ItemAdapter adapter;

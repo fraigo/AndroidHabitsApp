@@ -19,7 +19,11 @@ import me.franciscoigor.habits.base.ItemHolder;
 import me.franciscoigor.habits.base.ListFragment;
 import me.franciscoigor.habits.models.TaskModel;
 
-
+/**
+ * TaskListFragment
+ *
+ * Controller to show the task management view
+ */
 public class TaskListFragment extends ListFragment {
 
     private String viewModel = "tasks";

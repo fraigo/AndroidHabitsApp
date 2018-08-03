@@ -14,6 +14,12 @@ import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.models.TaskActionModel;
 import me.franciscoigor.habits.models.TaskModel;
 
+/**
+ * StatsFragment
+ *
+ * Controller for the Statistics view
+ * To get current task's statistics and to show calculated values
+ */
 public class StatsFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
