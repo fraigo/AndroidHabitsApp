@@ -52,16 +52,17 @@
     <string name="saturday">星期六</string>
     <string name="sunday">星期日</string>
 
-    <string name="health">Health</string>
-    <string name="study">Study</string>
-    <string name="work">Work</string>
-    <string name="financial">Finance</string>
-    <string name="home">Home</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="other">Other</string>
-    <string name="option_notifications">Notifications</string>
+    <string name="health">健康</string>
+    <string name="study">學習</string>
+    <string name="work">工作</string>
+    <string name="financial">財務</string>
+    <string name="home">家庭</string>
+    <string name="entertainment">娛樂</string>
+    <string name="other">其他</string>
+    <string name="option_notifications">通知</string>
 
-    <string name="msg_tasks_pending">%d pending task(s) for today</string>
+    <string name="msg_tasks_pending">今日待完成任務</string>
+
     <string name="tasks_by_category">Tasks by category</string>
 
 

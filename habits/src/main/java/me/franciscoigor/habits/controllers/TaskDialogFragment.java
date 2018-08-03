@@ -38,7 +38,6 @@ public class TaskDialogFragment extends ItemDialogFragment {
         TaskDialogFragment fragment = new TaskDialogFragment();
         fragment.setItem(item);
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -56,12 +55,20 @@ public class TaskDialogFragment extends ItemDialogFragment {
     private void enableOkButton(){
         AlertDialog dialog=(AlertDialog)this.getDialog();
 
-        String title=item.getStringValue(TaskModel.FIELD_TITLE);
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(title!= null && title.trim().length()>0);
+        if (item!= null){
+            String title=item.getStringValue(TaskModel.FIELD_TITLE);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(title!= null && title.trim().length()>0);
+        }
+
     }
 
     @Override
     protected void bindDialog(final DataModel item, View v) {
+
+        if (item == null){
+            this.dismiss();
+            return;
+        }
 
         this.item = item;
 

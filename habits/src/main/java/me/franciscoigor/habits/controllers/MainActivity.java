@@ -1,17 +1,10 @@
 package me.franciscoigor.habits.controllers;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,10 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.Toast;
 
-import java.util.Locale;
+import java.util.ArrayList;
 
 import me.franciscoigor.habits.R;
 import me.franciscoigor.habits.base.DataModel;
@@ -41,12 +32,15 @@ public class MainActivity extends SingleFragmentActivity
 
     private static Fragment fragment;
     boolean fromNotification = false;
+    ArrayList<Integer> viewHistory;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        viewHistory = new ArrayList<Integer>();
 
         Intent currentIntent = getIntent();
         String notificationParam = currentIntent.getStringExtra(NotificationHelper.EXTRA_PARAM_NOTIFICATION);
@@ -109,6 +103,12 @@ public class MainActivity extends SingleFragmentActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (viewHistory.size()>1){
+                // Implement back history
+                int prevId = viewHistory.get(viewHistory.size()-2);
+                viewHistory.remove(viewHistory.size()-1);
+                viewHistory.remove(viewHistory.size()-1);
+                goToView(prevId);
         } else {
             super.onBackPressed();
         }
@@ -151,36 +151,33 @@ public class MainActivity extends SingleFragmentActivity
 
     private boolean goToView(int viewId){
         if (viewId == R.id.nav_today){
-            setTitle(R.string.menu_today);
-            loadFragment(fragment = ActionListFragment.newInstance(DateUtils.today().getTime()),true);
-            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
+            setupView(R.string.menu_today, ActionListFragment.newInstance(DateUtils.today().getTime()), viewId);
             return true;
         }
         if (viewId == R.id.nav_yesterday){
-            setTitle(R.string.menu_yesterday);
-            loadFragment(fragment = ActionListFragment.newInstance(DateUtils.yesterday().getTime()),true);
-            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
+            setupView(R.string.menu_yesterday, ActionListFragment.newInstance(DateUtils.yesterday().getTime()), viewId);
             return true;
         }
         if (viewId == R.id.nav_tasks) {
-            setTitle(R.string.menu_tasks);
-            loadFragment(fragment = TaskListFragment.newInstance(null), true);
-            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
+            setupView(R.string.menu_tasks, TaskListFragment.newInstance(null), viewId);
             return true;
         }
         if (viewId == R.id.nav_stats) {
-            setTitle(R.string.menu_stats);
-            loadFragment(fragment = StatsFragment.newInstance(null), true);
-            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
+            setupView(R.string.menu_stats, StatsFragment.newInstance(null), viewId);
             return true;
         }
         if (viewId == R.id.nav_manage) {
-            setTitle(R.string.menu_manage);
-            loadFragment(fragment = OptionsFragment.newInstance(null), true);
-            OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
+            setupView(R.string.menu_manage, OptionsFragment.newInstance(null), viewId);
             return true;
         }
         return false;
+    }
+
+    void setupView(int titleId, Fragment newFragment, int viewId){
+        setTitle(titleId);
+        loadFragment(fragment = newFragment, true);
+        OptionsModel.setOption(OptionsModel.OPT_STARTVIEW, Integer.toString(viewId));
+        viewHistory.add(viewId);
     }
 
     @Override

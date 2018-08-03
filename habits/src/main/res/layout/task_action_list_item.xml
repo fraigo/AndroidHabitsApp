@@ -90,7 +90,8 @@
                 android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:text="Description"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
 
         </LinearLayout>
