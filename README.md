@@ -28,6 +28,15 @@ Android Application to manage tasks, activities and build habits
   * Application language: English, Spanish, Chinese, Turkish, Portuguese
   * Notification options (only available on new android devices)
   
+# Play Store
+
+Install this application from the Google Play store at
+
+https://play.google.com/store/apps/details?id=me.franciscoigor.habits
+
+
+
+  
 # Acnowledgements
 
 * Translators and language contributors
