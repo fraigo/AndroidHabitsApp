@@ -60,8 +60,8 @@
     <string name="other">その他</string>
     <string name="option_notifications">通知</string>
 
-    <string name="msg_tasks_pending">%d pending task(s) for today</string>
-    <string name="tasks_by_category">Tasks by category</string>
+    <string name="msg_tasks_pending">本日の未完了タスク %d件</string>
+    <string name="tasks_by_category">カテゴリ別タスク</string>
 
 
 </resources>
