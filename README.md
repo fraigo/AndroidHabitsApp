@@ -6,7 +6,7 @@ Android Application to manage tasks, activities and build habits
 ![](playstore/screenshot01.png)
 ![](playstore/screenshot02.png)
 ![](playstore/screenshot03.png)
-![](playstore/screenshot04.png)
+![](playstore/screnshot04.png)
 
 ## Features
 
