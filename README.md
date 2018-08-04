@@ -27,7 +27,7 @@ Android Application to manage tasks, activities and build habits
   * Tasks created and completed by category
 * Options and configuration
   * Show deleted tasks
-  * Application language: English, Spanish, Chinese, Turkish, Portuguese
+  * Application language: English, Chinese, Japanese, Turkish, Portuguese, Spanish
   * Notification options (only available on new android devices)
   
 # Play Store
