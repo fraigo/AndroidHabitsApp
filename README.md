@@ -5,6 +5,8 @@ Android Application to manage tasks, activities and build habits
 
 ![](playstore/screenshot01.png)
 ![](playstore/screenshot02.png)
+![](playstore/screenshot03.png)
+![](playstore/screenshot04.png)
 
 ## Features
 
@@ -44,7 +46,7 @@ https://play.google.com/store/apps/details?id=me.franciscoigor.habits
   * Rodrigo Moura (Portuguese)
   * Alex Lee (Chinese)
   * Shouei Mizuno (Japanese)
-  * Spanish (Francisco Igor)
+  * Francisco Igor (Spanish)
   
 
 
