@@ -37,16 +37,22 @@ Install this application from the Google Play store at
 https://play.google.com/store/apps/details?id=me.franciscoigor.habits
 
 
+# Extra features in development
+
+* Time tracking (minutes/hours used by tasks)
+* Statistics about most accomplished tasks and ost failed tasks
+* Associate tasks to locations, to launch notifications in context
 
   
 # Acnowledgements
 
-* Translators and language contributors
-  * Mert Kaval (Turkish)
-  * Rodrigo Moura (Portuguese)
-  * Alex Lee (Chinese)
-  * Shouei Mizuno (Japanese)
-  * Francisco Igor (Spanish)
+Translators and language contributors
+
+* Mert Kaval (Turkish)
+* Rodrigo Moura (Portuguese)
+* Alex Lee (Chinese)
+* Shouei Mizuno (Japanese)
+* Francisco Igor (Spanish)
   
 
 
