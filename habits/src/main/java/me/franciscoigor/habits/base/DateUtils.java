@@ -66,6 +66,12 @@ public class DateUtils {
         return WEEKDAYS[day-1];
     }
 
+    public static int dayOfMonth(Date date){
+        Calendar.getInstance().setTime(date);
+        int day=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        return day;
+    }
+
     public static String getWeekDayName(Activity activity, String weekday){
         if (weekday==null) return null;
         int id = activity.getResources().getIdentifier(weekday, "string", activity.getPackageName());

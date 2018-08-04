@@ -146,7 +146,7 @@ public class TaskModel extends DataModel {
     public static ArrayList<DataModel> currentTasks(Date current) {
         String currentDate = DateUtils.format(current);
         String currentWeekDay = DateUtils.weekDay(current);
-        String todayDate = DateUtils.format(DateUtils.today());
+
 
         System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
 
