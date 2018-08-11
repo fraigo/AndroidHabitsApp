@@ -44,7 +44,7 @@ https://play.google.com/store/apps/details?id=me.franciscoigor.habits
 * Associate tasks to locations, to launch notifications in context
 
   
-# Acnowledgements
+# Acknowledgements
 
 Translators and language contributors
 
