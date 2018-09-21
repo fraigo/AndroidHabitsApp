@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -50,58 +51,64 @@ public class TaskListFragment extends ListFragment {
     }
 
     @Override
-    protected void setupAdapter(ListFragment.ItemAdapter adapter) {
+    protected void setupAdapter(final ListFragment.ItemAdapter adapter) {
         ArrayList<DataModel> list=adapter.loadItems(viewModel);
         if (list.size()==0){
-            adapter.addItem(new TaskModel("Read a book",
-                    "Keep my mind busy",
-                    TaskModel.FREQUENCY_DAILY,
-                    null,
-                    TaskModel.CATEGORY_STUDY,
-                    "06:30",
-                    true));
-            adapter.addItem(new TaskModel("Go to work",
-                    "Office work",
-                    TaskModel.FREQUENCY_WEEKDAYS,
-                    null,
-                    TaskModel.CATEGORY_WORK,
-                    "08:00",
-                    true));
-            adapter.addItem(new TaskModel("Go to Gym",
-                    "Do some body work",
-                    TaskModel.FREQUENCY_WEEKLY,
-                    DateUtils.WEEKDAY_SATURDAY,
-                    TaskModel.CATEGORY_HEALTH,
-                    "09:00",
-                    true));
-            adapter.addItem(new TaskModel("Laundry",
-                    "Wash my clothes",
-                    TaskModel.FREQUENCY_WEEKLY,
-                    DateUtils.WEEKDAY_SUNDAY,
-                    TaskModel.CATEGORY_HOME,
-                    "09:00",
-                    true));
-            adapter.addItem(new TaskModel("Have some fun",
-                    "Watch a movie, Play with friends",
-                    TaskModel.FREQUENCY_WEEKLY,
-                    DateUtils.WEEKDAY_FRIDAY,
-                    TaskModel.CATEGORY_ENTERTAINMENT,
-                    "21:00",
-                    true));
-            adapter.addItem(new TaskModel("Family Activities",
-                    "Go camping, visit family",
-                    TaskModel.FREQUENCY_WEEKENDS,
-                    null,
-                    TaskModel.CATEGORY_ENTERTAINMENT,
-                    "16:00",
-                    true));
-            adapter.addItem(new TaskModel("Pay bills",
-                    "No debt",
-                    TaskModel.FREQUENCY_MONTHLY,
-                    "1",
-                    TaskModel.CATEGORY_FINANCIAL,
-                    "09:00",
-                    true));
+            DialogHelper.confirmDialog(getActivity(), "Do you want to start with example tasks ?", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    adapter.addItem(new TaskModel("Read a book",
+                            "Keep my mind busy",
+                            TaskModel.FREQUENCY_DAILY,
+                            null,
+                            TaskModel.CATEGORY_STUDY,
+                            "06:30",
+                            true));
+                    adapter.addItem(new TaskModel("Go to work",
+                            "Office work",
+                            TaskModel.FREQUENCY_WEEKDAYS,
+                            null,
+                            TaskModel.CATEGORY_WORK,
+                            "08:00",
+                            true));
+                    adapter.addItem(new TaskModel("Go to Gym",
+                            "Do some body work",
+                            TaskModel.FREQUENCY_WEEKLY,
+                            DateUtils.WEEKDAY_SATURDAY,
+                            TaskModel.CATEGORY_HEALTH,
+                            "09:00",
+                            true));
+                    adapter.addItem(new TaskModel("Laundry",
+                            "Wash my clothes",
+                            TaskModel.FREQUENCY_WEEKLY,
+                            DateUtils.WEEKDAY_SUNDAY,
+                            TaskModel.CATEGORY_HOME,
+                            "09:00",
+                            true));
+                    adapter.addItem(new TaskModel("Have some fun",
+                            "Watch a movie, Play with friends",
+                            TaskModel.FREQUENCY_WEEKLY,
+                            DateUtils.WEEKDAY_FRIDAY,
+                            TaskModel.CATEGORY_ENTERTAINMENT,
+                            "21:00",
+                            true));
+                    adapter.addItem(new TaskModel("Family Activities",
+                            "Go camping, visit family",
+                            TaskModel.FREQUENCY_WEEKENDS,
+                            null,
+                            TaskModel.CATEGORY_ENTERTAINMENT,
+                            "16:00",
+                            true));
+                    adapter.addItem(new TaskModel("Pay bills",
+                            "No debt",
+                            TaskModel.FREQUENCY_MONTHLY,
+                            "1",
+                            TaskModel.CATEGORY_FINANCIAL,
+                            "09:00",
+                            true));
+                }
+            });
+
         }
         ArrayList<DataModel> filtered=adapter.findItems(viewModel, null, String.format("%s <> '%s'", TaskModel.FIELD_ENABLED,"1"),new String[0]);
     }
