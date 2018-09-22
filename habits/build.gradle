@@ -14,8 +14,8 @@ android {
         applicationId "me.franciscoigor.habits"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 103
-        versionName '1.03'
+        versionCode 104
+        versionName '1.04'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -4,6 +4,7 @@ package me.franciscoigor.habits.models;
 import android.app.Activity;
 import android.graphics.Color;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -143,31 +144,44 @@ public class TaskModel extends DataModel {
         return Color.parseColor(COLORS[pos]);
     }
 
+    public static String implode(String separator, String... data) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < data.length - 1; i++) {
+            //data.length - 1 => to not add separator at the end
+            if (!data[i].matches(" *")) {//empty string are ""; " "; "  "; and so on
+                sb.append(data[i]);
+                sb.append(separator);
+            }
+        }
+        sb.append(data[data.length - 1].trim());
+        return sb.toString();
+    }
+
     public static ArrayList<DataModel> currentTasks(Date current) {
         String currentDate = DateUtils.format(current);
         String currentWeekDay = DateUtils.weekDay(current);
+        int currentDay = DateUtils.dayOfMonth(current);
+
 
 
         System.out.println("CURRENT DATE "+ currentDate+ " "+ currentWeekDay);
 
         String[] columns = { "tasks.*"};
+
+        String[] conditionList = {
+                String.format("( tasks.%s = '%s' )",TaskModel.FIELD_FREQUENCY, TaskModel.FREQUENCY_DAILY ),
+                String.format("( tasks.%s = '%s' and  tasks.%s = '%s')",TaskModel.FIELD_FREQUENCY, TaskModel.FREQUENCY_WEEKLY, TaskModel.FIELD_FREQ_DETAIL, currentWeekDay),
+                String.format("( tasks.%s = '%s' and  tasks.%s = '%d')",TaskModel.FIELD_FREQUENCY, TaskModel.FREQUENCY_MONTHLY, TaskModel.FIELD_FREQ_DETAIL, currentDay),
+                String.format("( tasks.%s = '%s' and  '%s' not in ('saturday','sunday') )", TaskModel.FIELD_FREQUENCY, TaskModel.FREQUENCY_WEEKDAYS, currentWeekDay),
+                String.format("( tasks.%s = '%s' and  '%s' in ('saturday','sunday') )", TaskModel.FIELD_FREQUENCY, TaskModel.FREQUENCY_WEEKENDS, currentWeekDay)
+        };
+
+        String condition = String.format("taskActions.task_id is null and tasks.enabled = '1' and (%s)", implode( "\n OR ", conditionList));
+        System.out.println("Condition "+condition);
         ArrayList<DataModel> filtered= DatabaseHelper.getItems(
                 String.format("tasks left join taskActions ON taskActions.task_id=tasks._id and taskActions.task_date = '%s'", currentDate),
                 columns,
-                String.format("taskActions.task_id is null and tasks.enabled = '1' and ( ( tasks.%s = '%s' ) OR ( tasks.%s = '%s' and  tasks.%s = '%s') OR ( tasks.%s = '%s' and  '%s' not in ('saturday','sunday') ) OR ( tasks.%s = '%s' and  '%s' in ('saturday','sunday') ))",
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_DAILY,
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_WEEKLY,
-                        TaskModel.FIELD_FREQ_DETAIL,
-                        currentWeekDay,
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_WEEKDAYS,
-                        currentWeekDay,
-                        TaskModel.FIELD_FREQUENCY,
-                        TaskModel.FREQUENCY_WEEKENDS,
-                        currentWeekDay
-                ),
+                condition,
                 null);
         return filtered;
     }
