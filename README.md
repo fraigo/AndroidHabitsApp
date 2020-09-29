@@ -37,7 +37,7 @@ Install this application from the Google Play store at
 https://play.google.com/store/apps/details?id=me.franciscoigor.habits
 
 
-# Extra features in development
+# Extra features (in development)
 
 * Time tracking (minutes/hours used by tasks)
 * Statistics about most accomplished tasks and ost failed tasks
