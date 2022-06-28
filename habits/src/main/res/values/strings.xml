@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">Your habit coach</string>
     <string name="nav_header_desc">Menu</string>
 
+    <string name="confirmation">Confirmation</string>
+    <string name="startup_tasks">Do you want to start with example tasks?</string>
+
     <string name="menu_tasks">Task Planning</string>
     <string name="menu_manage">Configure</string>
     <string name="menu_today">Today's tasks</string>

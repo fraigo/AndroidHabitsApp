@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">Tu coach personal</string>
     <string name="nav_header_desc">Menu</string>
 
+    <string name="confirmation">Confirmación</string>
+    <string name="startup_tasks">Desea comenzar con tareas de ejemplo?</string>
+
     <string name="menu_tasks">Planificar tareas</string>
     <string name="menu_manage">Configurar</string>
     <string name="menu_today">Para Hoy</string>

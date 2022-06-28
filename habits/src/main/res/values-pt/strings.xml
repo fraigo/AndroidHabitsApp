@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">Treine seus hábitos</string>
     <string name="nav_header_desc">Menu</string>
 
+    <string name="confirmation">Confirmação</string>
+    <string name="startup_tasks">Deseja começar com tarefas de exemplo?</string>
+
     <string name="menu_tasks">Planejar tarefas</string>
     <string name="menu_manage">Configurar</string>
     <string name="menu_today">Tarefas do dia</string>

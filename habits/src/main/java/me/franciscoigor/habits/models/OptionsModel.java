@@ -23,6 +23,7 @@ public class OptionsModel extends DataModel {
     public static final String OPT_SHOW_DELETED = "show_deleted";
     public static final String OPT_LOCALE = "app_locale";
     public static final String OPT_STARTVIEW = "app_startview";
+    public static final String OPT_FIRST_RUN = "app_firstrun";
 
     public OptionsModel(){
         this(null, null);

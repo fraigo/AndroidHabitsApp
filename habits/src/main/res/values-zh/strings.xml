@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">你的指導教練</string>
     <string name="nav_header_desc">主選單</string>
 
+    <string name="confirmation">确认</string>
+    <string name="startup_tasks">您想從示例任務開始嗎？</string>
+
     <string name="menu_tasks">任務</string>
     <string name="menu_manage">設定</string>
     <string name="menu_today">今天</string>

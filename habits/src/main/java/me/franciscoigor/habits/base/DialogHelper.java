@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
+import me.franciscoigor.habits.R;
+
 /**
  * DialogHelper
  *
@@ -16,7 +18,7 @@ public class DialogHelper {
 
     public static void confirmDialog(Activity activity, String message, DialogInterface.OnClickListener listener){
         new AlertDialog.Builder(activity)
-                .setTitle("Confirmation")
+                .setTitle(R.string.confirmation)
                 .setMessage(message)
                 .setIcon(android.R.drawable.ic_menu_help)
                 .setPositiveButton(android.R.string.yes, listener)

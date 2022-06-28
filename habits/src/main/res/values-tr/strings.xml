@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">Alışkanlık Koçu</string>
     <string name="nav_header_desc">Menü</string>
 
+    <string name="confirmation">Onayla</string>
+    <string name="startup_tasks">Örnek görevlerle başlamak ister misiniz?</string>
+
     <string name="menu_tasks">Tüm Görevler</string>
     <string name="menu_manage">Değiştir</string>
     <string name="menu_today">Bugünkü görevler</string>

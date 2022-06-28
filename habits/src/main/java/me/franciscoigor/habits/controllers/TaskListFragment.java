@@ -18,6 +18,7 @@ import me.franciscoigor.habits.base.DateUtils;
 import me.franciscoigor.habits.base.DialogHelper;
 import me.franciscoigor.habits.base.ItemHolder;
 import me.franciscoigor.habits.base.ListFragment;
+import me.franciscoigor.habits.models.OptionsModel;
 import me.franciscoigor.habits.models.TaskModel;
 
 /**
@@ -53,8 +54,10 @@ public class TaskListFragment extends ListFragment {
     @Override
     protected void setupAdapter(final ListFragment.ItemAdapter adapter) {
         ArrayList<DataModel> list=adapter.loadItems(viewModel);
-        if (list.size()==0){
-            DialogHelper.confirmDialog(getActivity(), "Do you want to start with example tasks ?", new DialogInterface.OnClickListener() {
+        String value = OptionsModel.getOptionValue(OptionsModel.OPT_FIRST_RUN);
+        OptionsModel.setOption(OptionsModel.OPT_FIRST_RUN, Integer.toString(1));
+        if (value==null){
+            DialogHelper.confirmDialog(getActivity(), getString(R.string.startup_tasks) , new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     adapter.addItem(new TaskModel("Read a book",

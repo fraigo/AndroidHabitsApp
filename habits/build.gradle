@@ -9,13 +9,13 @@ android {
             storePassword 'an4010153'
         }
     }
-    compileSdkVersion 27
+    compileSdkVersion 30
     defaultConfig {
         applicationId "me.franciscoigor.habits"
         minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 104
-        versionName '1.04'
+        targetSdkVersion 30
+        versionCode 105
+        versionName '1.05'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

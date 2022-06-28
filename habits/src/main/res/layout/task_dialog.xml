@@ -4,102 +4,109 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_title" />
-
-    <EditText
-        android:id="@+id/task_dialog_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/frequency" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4pt">
+
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_title" />
+
+        <EditText
+            android:id="@+id/task_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4pt"
+            android:text="@string/frequency" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/task_dialog_frequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/task_dialog_freqdetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4pt"
+            android:text="@string/task_category" />
 
         <Spinner
-            android:id="@+id/task_dialog_frequency"
+            android:id="@+id/task_dialog_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Spinner
-            android:id="@+id/task_dialog_freqdetail"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:paddingTop="4pt"
+            android:text="@string/task_time" />
+
+        <Button
+            android:id="@+id/task_dialog_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="08:00" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4pt"
+            android:text="@string/task_status" />
+
+        <CheckBox
+            android:id="@+id/task_dialog_enabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enabled" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4pt"
+            android:text="@string/task_description" />
+
+        <EditText
+            android:id="@+id/task_dialog_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
+
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_category" />
-
-    <Spinner
-        android:id="@+id/task_dialog_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_time" />
-
-    <Button
-        android:id="@+id/task_dialog_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="08:00" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_status" />
-
-    <CheckBox
-        android:id="@+id/task_dialog_enabled"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/enabled" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_description" />
-
-    <EditText
-        android:id="@+id/task_dialog_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="" />
-
-
-</LinearLayout>
 </ScrollView>

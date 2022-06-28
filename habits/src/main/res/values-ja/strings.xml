@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">習慣化コーチ</string>
     <string name="nav_header_desc">メニュー</string>
 
+    <string name="confirmation">確認</string>
+    <string name="startup_tasks">サンプルタスクから始めますか？</string>
+
     <string name="menu_tasks">タスク計画作成</string>
     <string name="menu_manage">設定</string>
     <string name="menu_today">本日のタスク</string>
